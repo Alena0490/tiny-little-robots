@@ -1,0 +1,47 @@
+import { useState } from "react"
+import "./Menu.css"
+
+ const Menu = () => {
+    const [isOpen, setIsOpen] = useState(false);
+
+
+    return (
+        <nav className="navigation" tabIndex={0} onBlur={() => setIsOpen(false)}>
+            <button
+                className={`burger ${isOpen ? "burger--open" : ""}`}
+                onClick={() => setIsOpen(!isOpen)}
+                aria-label="Toggle menu"
+            >
+                {isOpen ? (
+                    <svg className="menu-img" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="currentColor" d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z"/>
+                    </svg>
+                ) : (
+                    <svg className="menu-img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M5 17H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M5 7H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                )}
+            </button>
+        
+            <ul className={`nav-menu ${isOpen ? "nav-menu--open" : ""}`}>
+                <li className="nav-link">
+                    <a href="/">Home</a>
+                    </li>
+                <li className="nav-link">
+                    <a href="#about">About</a>
+                    </li>
+                <li className="nav-link">
+                    <a href="#projects">Projects</a>
+                    </li>
+                <li className="nav-link">
+                    <a 
+                        href="#contacts">Contacts</a>
+                    </li>
+            </ul>
+        </nav>
+    )
+}
+
+export default Menu
