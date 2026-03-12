@@ -1,0 +1,105 @@
+
+.form {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1rem auto 2rem;
+    padding: 2rem;
+    border-radius: var(--radius-xl);
+    corner-shape: squircle;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+        background:
+        linear-gradient(
+            180deg,
+            hsl(0 0% 100% / 0.04),
+            hsl(0 0% 100% / 0.02)
+        );
+    box-shadow: var(--shadow-soft);
+}
+
+.form input, .form textarea {
+    width: 100%;
+    appearance: none;
+    outline: none;
+    padding: 0.75rem 1.25rem;
+    corner-shape: squircle;
+    border-radius: var(--radius-xl);
+    font-size: var(--text-base);
+    font-family: inherit;
+    line-height: inherit;
+    border: 1px solid var(--border-color);
+    background-color: var(--background-elevated-tr);
+    color: var(--text-color);
+    font-weight: 400;
+    transition: background-color 0.6s ease, border 0.6s ease;
+}
+
+.form input:focus, .form textarea:focus {
+    border: 1px solid var(--text-muted);
+    background-color: var(--background-elevated);
+}
+
+.form label {
+    width: 100%;
+    font-size: var(--text-base);
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-block: 0.25rem -0.25rem;
+    text-align: left;
+}
+
+.honeypot {
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    height: 0;
+    width: 0;
+    z-index: -1;
+    pointer-events: none; 
+}
+
+.form input.form-submit {
+    font-size: var(--text-base);
+    margin-top: 0.5rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    border: 2px solid hsl(0 0 100% / 0.25);
+    background: var(--button);
+    transition: background-color 300ms; 
+}
+
+.form input.form-submit:is(:hover, :focus) { 
+    background: var(--main-color);
+    box-shadow: 0 0 32px oklch(from var(--main-color) l c h / .5);
+}
+
+.form-result {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    padding: 0.85rem 1rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-light2);
+    background: var(--background-elevated-tr);
+    color: var(--text-color);
+    font-size: var(--text-base);
+    line-height: 1.5;
+    text-align: left;
+    box-shadow: var(--shadow-soft);
+}
+
+.form-result--success {
+    color: var(--success-color);
+    background: var(--success-bg);
+    border-color: var(--success-border);
+}
+
+.form-result--error {
+    color: var(--error-color);
+    background: var(--error-bg);
+    border-color: var(--error-border);
+}

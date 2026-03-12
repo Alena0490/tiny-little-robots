@@ -12,15 +12,14 @@
 .nav-menu {
     anchor-name: --nav-ul;
     list-style: none;
-    border-block-start: 3px solid hsl(0 0% 100% / .2);
-    border-block-end: 3px solid hsl(0 0% 100% / .2);
+    border-block-start: 3px solid var(--border-light);
+    border-block-end: 3px solid var(--border-light);
     display: flex;
     justify-content: center;
     background: var(--background-elevated-tr);
     backdrop-filter: blur(10px);
     gap: 1rem;
     padding: 2rem;
-    /* border: 1px solid green; */
 }
 
 .navigation::after {
@@ -51,13 +50,13 @@
 .nav-link a {
     text-decoration: none;
     color: var(--text-color);
-    font-size: 0.889rem;
+    font-size: var(--text-sm);
     padding: 0.75rem 1.25rem;
     border-radius: 2rem;
     corner-shape: squircle;
     text-transform: uppercase;
     border: 2px solid hsl(0 0 100% / 0.25);
-    background: hsl(0 0 20%);
+       background: var(--button);
     transition: background-color 300ms;
 }
 
