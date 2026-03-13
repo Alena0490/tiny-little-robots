@@ -1,7 +1,12 @@
 import { useState } from "react"
 import "./Menu.css"
 
- const Menu = () => {
+interface ScrollProps {
+    scrollTo: (id: string) => void
+}
+
+ const Menu = ({ scrollTo }: ScrollProps) => {
+    // Open burger menu
     const [isOpen, setIsOpen] = useState(false);
 
 
@@ -27,18 +32,17 @@ import "./Menu.css"
         
             <ul className={`nav-menu ${isOpen ? "nav-menu--open" : ""}`}>
                 <li className="nav-link">
-                    <a href="/">Home</a>
-                    </li>
+                    <a onClick={() => scrollTo('home')}>Home</a>
+                </li>
                 <li className="nav-link">
-                    <a href="#about">About</a>
-                    </li>
+                    <a onClick={() => scrollTo('about')}>About</a>
+                </li>
                 <li className="nav-link">
-                    <a href="#projects">Projects</a>
-                    </li>
+                    <a onClick={() => scrollTo('projects')}>Projects</a>
+                </li>
                 <li className="nav-link">
-                    <a 
-                        href="#contacts">Contacts</a>
-                    </li>
+                    <a onClick={() => scrollTo('contacts')}>Contacts</a>
+                </li>
             </ul>
         </nav>
     )

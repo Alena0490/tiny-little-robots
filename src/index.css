@@ -29,6 +29,9 @@
   /* FORM STATES  */
   --border-strong: color-mix(in srgb, var(--text-color) 28%, transparent);
   --border-accent: color-mix(in srgb, var(--main-color) 45%, white 12%);
+  --main-color-light: #ff69b4;
+  --main-color-lighter: #ffb3d9;
+  --main-color-glow-light: oklch(from var(--main-color-light) l c h / .4);
 
   --focus-ring: oklch(from var(--main-color) l c h / .28);
 

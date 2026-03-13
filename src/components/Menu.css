@@ -58,6 +58,7 @@
     border: 2px solid hsl(0 0 100% / 0.25);
        background: var(--button);
     transition: background-color 300ms;
+    cursor: pointer;
 }
 
 .nav-link a:is(:hover, :focus) {

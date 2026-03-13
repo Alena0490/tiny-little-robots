@@ -1,0 +1,58 @@
+section.hero {
+    /* position: relative; */
+    height: 90vh;
+    min-height: unset;
+    max-width: unset;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4rem;
+    border-block-end: 3px solid var(--border-light);
+    background-color: var(--background-elevated-tr);
+    backdrop-filter: blur(5px);
+}
+
+.hearo-headings {
+    width: 100%;
+    position: absolute;
+    top: 4rem;
+    z-index: 0;
+}
+
+.cta {
+  position: absolute;
+  top: calc(100vh - 15rem);
+  display: flex;
+  justify-content: center;
+  margin-block: 1rem;
+  gap: 1rem;
+}
+
+.cta button {
+  color: var(--text-color);
+  font-size: var(--text-base);
+  font-family: inherit;
+  margin-top: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-weight: 700;
+  border-radius: var(--radius-xl);
+  corner-shape: squircle;
+  text-transform: uppercase;
+  border: 2px solid hsl(0 0 100% / 0.25);
+  background: var(--button);
+  backdrop-filter: blur(10px);
+  transition: background-color 300ms; 
+  cursor: pointer;
+}
+
+.cta button:is(:hover, :focus) { 
+    background: var(--main-color);
+    box-shadow: 0 0 32px oklch(from var(--main-color) l c h / .5);
+}
+
+.arrow {
+    position: absolute;
+    bottom: 0;
+    color: var(--text-muted);
+    font-size: clamp(2.625rem, 0.9177rem + 8.5366vw, 4.375rem);
+    cursor: pointer;
+}
