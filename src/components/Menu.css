@@ -6,7 +6,7 @@
     width: 100%;
     margin-inline: auto;
     backdrop-filter: blurr(10px);
-    z-index: 10;
+    z-index: 1;
 }
 
 .nav-menu {

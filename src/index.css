@@ -134,11 +134,12 @@ body {
 }
 
 header{
-
+  z-index: 0;
 }
 
 h1, h2 {
-  font-weight: 700;
+  font-family: inherit;
+  font-weight: 600;
   text-align: center;
 }
 
@@ -152,10 +153,12 @@ h2 {
   text-transform: uppercase;
   font-size: var(--text-h2);
   color: var(--main-color);
+  margin-bottom: 1rem;
 }
 
 h3 {
   font-size: var(--text-h3);
+  font-family: inherit;
 }
 
 p {

@@ -64,7 +64,10 @@ const Model = () => {
     return (
         <div 
             className={`model-wrap ${canvasActive ? 'active' : ''}`}
-            onClick={() => setCanvasActive(true)}
+            onClick={() => {
+                setCanvasActive(true)
+                setTimeout(() => setCanvasActive(false), 5000)
+            }}
             onMouseLeave={() => setCanvasActive(false)}
         >
             {canvasActive && (

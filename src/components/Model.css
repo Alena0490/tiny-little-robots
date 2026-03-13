@@ -1,24 +1,29 @@
 .model-wrap {
     width: 100%;
-    height: 100%;
+    height: 120%;
     position: absolute;
-    top: 0;
+    bottom: -20%;
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    padding: 0;
+    padding: 0 0;
     cursor: pointer;
 }
 
 .model-wrap.active {
     cursor: zoom-in;
     filter: brightness(1.2);
+    isolation: isolate;
+    overflow: visible;
+    z-index: 10;
 }
 
 canvas { 
-    width: 100%; 
-    height: 100%;
-    padding: 4rem 0rem 1rem; 
+    width: 160%; 
+    height: 200%;
+    margin-top: -2%;
+    padding: 5rem 0rem 1rem; 
+    overflow: visible;
 }
 
 .model-hint {

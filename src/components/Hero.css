@@ -1,11 +1,11 @@
 section.hero {
-    /* position: relative; */
     height: 90vh;
     min-height: unset;
     max-width: unset;
     align-items: center;
     justify-content: center;
     margin-bottom: 4rem;
+    padding: 0 0;
     border-block-end: 3px solid var(--border-light);
     background-color: var(--background-elevated-tr);
     backdrop-filter: blur(5px);
@@ -16,6 +16,18 @@ section.hero {
     position: absolute;
     top: 4rem;
     z-index: 0;
+}
+
+.hero-text {
+    font-size: var(--text-h3);
+    color: var(--text-muted);
+    font-family: inherit;
+    text-align: center;
+}
+
+.secondary {
+    text-align: center;
+    color: var(--text-faint);
 }
 
 .cta {
@@ -42,6 +54,7 @@ section.hero {
   backdrop-filter: blur(10px);
   transition: background-color 300ms; 
   cursor: pointer;
+  z-index: 0;
 }
 
 .cta button:is(:hover, :focus) { 

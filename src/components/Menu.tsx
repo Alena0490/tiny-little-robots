@@ -38,7 +38,7 @@ interface ScrollProps {
                     <a onClick={() => scrollTo('about')}>About</a>
                 </li>
                 <li className="nav-link">
-                    <a onClick={() => scrollTo('projects')}>Projects</a>
+                    <a onClick={() => scrollTo('shop')}>Shop</a>
                 </li>
                 <li className="nav-link">
                     <a onClick={() => scrollTo('contacts')}>Contacts</a>

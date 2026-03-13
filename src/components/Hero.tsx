@@ -12,7 +12,8 @@ const Hero = ({ scrollTo }: ScrollProps) => {
     <section id="home" className="hero">
         <div className="hearo-headings">
             <h1>Tiny Little Robots</h1>
-            <h2>Get your Robot Friend</h2>
+            <p className="hero-text">Get your own Robot Friend. Original Robots for everyone.</p>
+            <p className="secondary">Click to the Robot for zooming.</p>
         </div>
         <Model/>
         <div className="cta">
