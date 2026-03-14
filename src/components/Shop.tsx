@@ -1,3 +1,6 @@
+// import { useState } from "react"
+import ShoppingCart from "./ShoppingCart"
+import ShopItem from "./ShopItem"
 import "./Shop.css"
 
 const Shop = () => {
@@ -5,14 +8,8 @@ const Shop = () => {
     <section id="shop">
         <h2>Buy a Robot</h2>
         <article className="shop">
-            <div className="shop-item"></div>
-            <div className="shop-item"></div>
-            <div className="shop-item"></div>
-            <div className="shop-item"></div>
-            <div className="shop-item"></div>
-            <div className="shop-item"></div>
-            <div className="shop-item"></div>
-            <div className="shop-item"></div>
+            <ShopItem/>
+            <ShoppingCart/>
         </article>
     </section>
   )

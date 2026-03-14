@@ -1,0 +1,55 @@
+.shop-item {
+    min-width: 250px;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 2rem;
+    overflow: visible;
+    border-radius: var(--radius-xl);
+    corner-shape: squircle;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+        background:
+        linear-gradient(
+            180deg,
+            hsl(0 0% 100% / 0.04),
+            hsl(0 0% 100% / 0.02)
+        );
+    box-shadow: var(--shadow-soft);
+}
+
+.shop-item h3 {
+    position: absolute;
+    top: 0;
+    margin-block: 1rem;
+}
+
+#shop-model {
+    width: 100%;
+    height: 100%;
+    top: 20%;
+    overflow: visible;
+    z-index: 1;
+}
+
+.shop-item .model-wrap {
+    width: 160%;
+    height: 160%;
+    overflow: visible;
+}
+
+.shop-model canvas {
+    width: 100%; 
+    height: 100%;
+    padding: 0 0rem 0; 
+    overflow: visible;
+    z-index: 1;
+}
+
+.price {
+    position: absolute;
+    bottom: 0;
+    font-size: var(--text-base);
+}

@@ -8,19 +8,3 @@
     margin: 1rem auto 2rem;
 }
 
-.shop-item {
-    min-width: 200px;
-    min-height: 200px;
-    padding: 2rem;
-    border-radius: var(--radius-xl);
-    corner-shape: squircle;
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--border-color);
-        background:
-        linear-gradient(
-            180deg,
-            hsl(0 0% 100% / 0.04),
-            hsl(0 0% 100% / 0.02)
-        );
-    box-shadow: var(--shadow-soft);
-}

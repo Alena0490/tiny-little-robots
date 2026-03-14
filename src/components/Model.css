@@ -12,7 +12,7 @@
 
 .model-wrap.active {
     cursor: zoom-in;
-    filter: brightness(1.2);
+    filter: brightness(1.2) contrast(1.2);
     isolation: isolate;
     overflow: visible;
     z-index: 10;
@@ -42,6 +42,10 @@ canvas {
     animation: FadeOut 3s ease-in-out forwards;
     pointer-events: none;
     z-index: 10;
+}
+
+.dino {
+    filter: hue-rotate(80deg)  brightness(1.3);
 }
 
 
