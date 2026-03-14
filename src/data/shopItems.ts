@@ -1,9 +1,12 @@
 import CatModel from "../components/models/CatModel"
 import RoundCat from "../components/models/RoundCat"
 import DinoModel from "../components/models/DinoModel"
-import DogModal from "../components/models/DogModal"
-import ShibaModal from "../components/models/ShibaModal"
-import RamboModal from "../components/models/RamboModel"
+import DogModel from "../components/models/DogModel"
+import ShibaModel from "../components/models/ShibaModel"
+import RamboModel from "../components/models/RamboModel"
+import NemoModel from "../components/models/NemoModel"
+import PinguiModel from "../components/models/PinguiModel"
+import SpiderModel from "../components/models/SpiderModel"
 
 const shopItems = [
     {
@@ -34,7 +37,7 @@ const shopItems = [
         id: 4,
         name: "Dog Classic",
         description: "",
-        model: DogModal,
+        model: DogModel,
         price: 1800,
         url: 'https://sketchfab.com/3d-models/robo-dog-69389a4744dd400b97de02c861834d45'
     },
@@ -42,7 +45,7 @@ const shopItems = [
         id: 5,
         name: "Shiba",
         description: "",
-        model: ShibaModal,
+        model: ShibaModel,
         price: 2800,
         url: 'https://sketchfab.com/3d-models/robo-shiba-b4215f3c452c4e7cbe845b56251d2877'
     },
@@ -50,10 +53,34 @@ const shopItems = [
         id: 6,
         name: "Rambo XXL",
         description: "",
-        model: RamboModal,
+        model: RamboModel,
         price: 3800,
         url: 'https://sketchfab.com/3d-models/futuristic-robotic-guard-dog-6569f6519be04959a05e3f021e5e4217'
-    }
+    },
+    {
+        id: 7,
+        name: "Nemo",
+        description: "",
+        model: NemoModel,
+        price: 800,
+        url: 'https://sketchfab.com/3d-models/robotic-fish-b4362fb28c7a4b0e83638bb6388c23a8'
+    },
+          {
+            id: 8,
+            name: "Pingui",
+            description: "",
+            model: PinguiModel,
+            price: 900,
+            url: 'https://sketchfab.com/3d-models/weathered-penguin-bot-33afc2b450dd4c188b307c82f3b2cbc3#download'
+        },
+        {
+            id: 9,
+            name: "Web Crawler 3.0",
+            description: "",
+            model: SpiderModel,
+            price: 1200,
+            url: 'https://sketchfab.com/3d-models/robotic-spider-ee587d7dabed49e1906ac5035b502899'
+        }
 ]
 
 export default shopItems

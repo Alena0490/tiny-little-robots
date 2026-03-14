@@ -26,7 +26,7 @@ const FixedLights = () => {
 
     return (
         <>
-            <ambientLight intensity={0.8} />
+            <ambientLight intensity={0.9} />
             <directionalLight
                 ref={lightRef}
                 intensity={4}
