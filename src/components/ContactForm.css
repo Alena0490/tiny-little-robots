@@ -2,21 +2,19 @@
 .form, 
 .form input, 
 .form textarea {
-    corner-shape: squircle;
-    border-radius: var(--radius-xl);
     border: 1px solid var(--border-color);
 }
 
 .form {
     width: 100%;
-    max-width: 600px;
+    max-width: 700px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--spacing-sm);
     margin: 1rem auto 2rem;
-    padding: 2rem;
-    backdrop-filter: blur(10px);
+    padding: var(--spacing-lg);
+    backdrop-filter: blur(var(--surface-blur));;
         background:
         linear-gradient(
             180deg,
@@ -37,12 +35,40 @@
     background-color: var(--background-elevated-tr);
     color: var(--text-color);
     font-weight: 400;
-    transition: background-color 0.6s ease, border 0.6s ease;
+    transition: background-color var(--transition-slow), border var(--transition-slow);
 }
 
 .form input:focus, .form textarea:focus {
     border: 1px solid var(--text-muted);
     background-color: var(--background-elevated);
+}
+
+.form input:focus-visible,
+.form textarea:focus-visible {
+  outline: none;
+  border-color: var(--border-accent);
+  box-shadow: 0 0 0 2px var(--focus-ring);
+}
+
+.form input:-webkit-autofill,
+.form textarea:-webkit-autofill {
+    -webkit-text-fill-color: var(--button);
+    font-weight: 700;
+    border: 1px solid var(--border-light2);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--main-color) 18%, transparent);
+}
+
+.form input:-webkit-autofill:focus,
+.form textarea:-webkit-autofill:focus {
+    border-color: var(--border-accent);
+    box-shadow:
+        0 0 0 1px color-mix(in srgb, var(--main-color) 28%, transparent),
+        0 0 0 2px var(--focus-ring);
+}
+
+.form input[type="email"]:focus:invalid {
+    border-color: var(--error-border);
+    background: var(--error-bg);
 }
 
 .form label {

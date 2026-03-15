@@ -5,7 +5,7 @@
     anchor-name: --active-nav;
     width: 100%;
     margin-inline: auto;
-    backdrop-filter: blurr(10px);
+    backdrop-filter: blur(10px);
     z-index: 1;
 }
 
@@ -52,12 +52,10 @@
     color: var(--text-color);
     font-size: var(--text-sm);
     padding: 0.75rem 1.25rem;
-    border-radius: 2rem;
-    corner-shape: squircle;
     text-transform: uppercase;
     border: 2px solid hsl(0 0 100% / 0.25);
        background: var(--button);
-    transition: background-color 300ms;
+    transition: background-color var(--transition-slow);
     cursor: pointer;
 }
 
@@ -107,7 +105,7 @@
         flex-direction: column;
         align-items: flex-start;
         border: 1px solid hsl(0 0 100% / 0.25);
-        border-top: nome;
+        border-top: none;
         z-index: 1;
     }
     .nav-menu--open { 

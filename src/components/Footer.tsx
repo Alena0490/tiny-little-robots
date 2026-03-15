@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="socials">
         <a 
           href="https://www.linkedin.com/in/alena-pumprova/" 
-          target="blank"
+          target="_blank"
           rel="noopener"
         >
           <span className="social">
@@ -18,7 +18,7 @@ const Footer = () => {
 
         <a 
           href="https://www.facebook.com/alena.pumprova/" 
-          target="blank"
+          target="_blank"
           rel="noopener"
         >
           <span className="social">
@@ -29,7 +29,7 @@ const Footer = () => {
 
         <a 
           href="https://github.com/Alena0490" 
-          target="blank"
+          target="_blank"
           rel="noopener"
         >
           <span className="social">

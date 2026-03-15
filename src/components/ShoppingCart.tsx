@@ -22,7 +22,7 @@ const ShoppingCart = ({
     className
 }: ShoppingCartProps) => {
     return (
-        <div className={`cart ${shoppingCart.length > 0 ? 'active' : ''} ${className ?? ''}`}>
+        <div className={`cart squircle-xl ${shoppingCart.length > 0 ? 'active' : ''} ${className ?? ''}`}>
             <h3>My Cart</h3>
             {shoppingCart.length === 0 ? (
                 <p className="empty-cart">Your cart is empty.</p>

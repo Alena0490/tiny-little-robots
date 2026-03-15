@@ -1,16 +1,15 @@
 .cart {
-  position: sticky;
-  top: 1rem;
-  align-self: start;
-  width: 100%;
-  padding: 1.25rem;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-xl);
-  background:
-    linear-gradient(180deg, hsl(0 0% 100% / 0.05), hsl(0 0% 100% / 0.02)),
-    radial-gradient(circle at top, oklch(from var(--main-color) l c h / 0.08), transparent 40%);
-  backdrop-filter: blur(12px);
-  box-shadow: var(--shadow-soft);
+    position: sticky;
+    top: 1rem;
+    align-self: start;
+    width: 100%;
+    padding: 1.25rem;
+    border: 1px solid var(--border-color);
+    background:
+        linear-gradient(180deg, hsl(0 0% 100% / 0.05), hsl(0 0% 100% / 0.02)),
+        radial-gradient(circle at top, oklch(from var(--main-color) l c h / 0.08), transparent 40%);
+    backdrop-filter: blur(12px);
+    box-shadow: var(--shadow-soft);
 }
 
 .cart h3 {

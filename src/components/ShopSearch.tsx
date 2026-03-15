@@ -7,7 +7,7 @@ interface ShopSearchProps {
 
 const ShopSearch = ({searchProduct, handleProductSearch}: ShopSearchProps) => {
   return (
-    <header className="shop-header">
+    <header className="shop-header squircle-xl">
         <h3 className="shop-search-heading">Shopping Cart</h3>
         <input
                 type="text"

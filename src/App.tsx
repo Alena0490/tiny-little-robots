@@ -21,7 +21,7 @@ const App = () => {
 }
 
   return (
-    <div>
+    <div className="content">
       <header>
         <Menu
         scrollTo={scrollTo}/>
@@ -31,7 +31,7 @@ const App = () => {
             <Hero
               scrollTo={scrollTo}
             />
-            <section id="about">
+            <section id="about" className="squircle-xl">
               <h2>About us</h2>
                 <p>Bear claw biscuit oat cake cookie candy canes cheesecake halvah jelly oat cake. Lollipop shortbread dessert chocolate cake caramels soufflé chupa chups chupa chups danish. Sweet jelly beans shortbread muffin bonbon jelly beans topping. Cake sesame snaps jujubes liquorice brownie. Pie halvah oat cake gummi bears jelly croissant donut. Wafer brownie dessert marshmallow gummi bears. Marzipan cotton candy sweet roll tart pie brownie fruitcake fruitcake candy canes.</p>
 
@@ -39,7 +39,7 @@ const App = () => {
             </section>
             <Shop/>
             <section id="contacts">
-              <h2>Contact us</h2>
+              <h2 id="contact-heading">Contact us</h2>
               <Form/>
             </section>
           </main>

@@ -1,71 +1,74 @@
 footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
-    padding: 1rem 2rem;
-    gap: 1rem;
-    border-block: 3px solid var(--border-light);
-    background: var(--background-elevated-tr);
-    backdrop-filter: blur(10px);
+    align-items: flex-start;
+    gap: var(--panel-gap);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-top: 3px solid var(--border-light);
+        background: var(--background-elevated-tr);
+    backdrop-filter: blur(var(--surface-blur));
 }
 
 .socials {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: var(--spacing-md);
 }
 
 .socials a {
-    color: inherit;
+    color: var(--text-soft);
     text-decoration: none;
-    font-size: var(--text-base);
-    transition: color var(--transition-normal);
+    transition:
+        color var(--transition-normal),
+        text-shadow var(--transition-normal);
 }
 
-.socials a:hover {
+.socials a:hover,
+.socials a:focus-visible {
     color: var(--main-color-light);
-    text-shadow: 0 0 32px oklch(from var(--main-color-light) l c h / .5);
+    text-shadow: var(--glow)
 }
 
 .social {
-    position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: var(--spacing-xs);
+    font-size: var(--text-sm);
     line-height: 1;
+    text-transform: uppercase;
 }
 
-.social::after {
-    content: "";
-    border-block-start: 3px solid transparent;
-    border-block-end: 3px solid transparent;
-
-    background: 
-        radial-gradient(var(--background-color)) padding-box,
-        radial-gradient(var(--main-color), transparent) border-box;
-
-    position: absolute;
-    position-anchor: --active-nav;
-
-    left: calc(anchor(left) - var(--nav-indicator-offset));
-    right: calc(anchor(right) - var(--nav-indicator-offset));
-    top: anchor(top --nav-ul);
-    bottom: anchor(bottom --nav-ul);
-
-    pointer-events: none;
-    z-index: -1;
-
-    opacity: 0;
-    transition: inset 300ms, opacity 700ms;
-    transition-delay: 700ms, 0ms;
-}
-
-.social a:is(:hover, :focus) {
-    anchor-name: --active-nav; 
-    background: var(--main-color-light);
-    box-shadow: 0 0 32px oklch(from var(--main-color) l c h / .5);
+.social svg {
+    font-size: 1.15rem;
+    flex-shrink: 0;
 }
 
 .copyright {
-    font-size: var(--text-base);
+    color: var(--text-soft);
+    font-size: var(--text-sm);
+    line-height: 1.2;
+    text-align: right;
+    white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+    footer {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-sm);
+        padding: var(--spacing-md);
+        text-align: center;
+    }
+
+    .socials {
+        justify-content: center;
+    }
+
+    .copyright {
+        text-align: center;
+        white-space: normal;
+    }
 }

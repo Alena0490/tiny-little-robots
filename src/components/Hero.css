@@ -11,7 +11,7 @@ section.hero {
     backdrop-filter: blur(3px);
 }
 
-.hearo-headings {
+.hero-headings {
     width: 100%;
     position: absolute;
     top: 4rem;
@@ -46,13 +46,11 @@ section.hero {
   margin-top: 0.5rem;
   padding: 0.75rem 1.25rem;
   font-weight: 700;
-  border-radius: var(--radius-xl);
-  corner-shape: squircle;
   text-transform: uppercase;
   border: 2px solid hsl(0 0 100% / 0.25);
   background: var(--button);
   backdrop-filter: blur(10px);
-  transition: background-color 300ms; 
+  transition: background-color var(--transition-normal); 
   cursor: pointer;
   z-index: 0;
 }

@@ -32,16 +32,16 @@ interface ScrollProps {
         
             <ul className={`nav-menu ${isOpen ? "nav-menu--open" : ""}`}>
                 <li className="nav-link">
-                    <a onClick={() => scrollTo('home')}>Home</a>
+                    <a className="squircle-xl" onClick={() => scrollTo('home')}>Home</a>
                 </li>
                 <li className="nav-link">
-                    <a onClick={() => scrollTo('about')}>About</a>
+                    <a className="squircle-xl" onClick={() => scrollTo('about')}>About</a>
                 </li>
                 <li className="nav-link">
-                    <a onClick={() => scrollTo('shop')}>Shop</a>
+                    <a className="squircle-xl" onClick={() => scrollTo('shop')}>Shop</a>
                 </li>
                 <li className="nav-link">
-                    <a onClick={() => scrollTo('contacts')}>Contacts</a>
+                    <a className="squircle-xl" onClick={() => scrollTo('contacts')}>Contacts</a>
                 </li>
             </ul>
         </nav>

@@ -12,8 +12,14 @@ const ContactForm = () => {
     const [result ,setResult] = useState<FormStatus>(null)
     const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
+
+        if (!formRef.current?.checkValidity()) {
+            formRef.current?.reportValidity()
+            return
+        }
+
         try { 
-            await emailjs.sendForm (
+            await emailjs.sendForm(
                 "service_k1i50up",
                 "template_hc48994",
                 formRef.current!,
@@ -24,35 +30,37 @@ const ContactForm = () => {
                 type: "success",
                 message: "Message sent successfully!"
             })
+
             formRef.current?.reset()
         }
-
         catch {
             setResult({
                 type: "error",
                 message: "Something went wrong, please try again."
             })
         }
-        
     }
 
   return (
     <form 
-        className="form"
+        className="form squircle-xl"
         onSubmit={handleSubmit}
         ref={formRef}
+        aria-labelledby="contact-heading"
     >
         {result && (
             <p
             className={`form-result form-result--${result.type}`}
             role="status"
             aria-live="polite"
+            aria-atomic="true"
             >
             {result.message}
             </p>
         )}
         <input 
             type="text" 
+            name="company"
             className="honeypot" 
             tabIndex={-1}
             autoComplete="none"
@@ -64,6 +72,7 @@ const ContactForm = () => {
             type="text" 
             name="name"
             id="name"
+            className="squircle-xl"
             autoComplete="name"
             required
             aria-required="true"
@@ -71,11 +80,12 @@ const ContactForm = () => {
         />
         <span id="name-error" role="alert" aria-live="polite" />
 
-        <label htmlFor="e-mail">E-mail</label>
+        <label htmlFor="email">E-mail</label>
         <input 
             type="email" 
-            name="e-mail"
-            id="e-mail"
+            name="email"
+            id="email"
+            className="squircle-xl"
             autoComplete="email"
             required
             aria-required="true"
@@ -88,6 +98,8 @@ const ContactForm = () => {
             type="tel" 
             name="phone" 
             id="phone"
+            pattern="[0-9+() /-]*"
+            className="squircle-xl"
             autoComplete="tel"
             aria-describedby="phone-error"
         />
@@ -97,6 +109,7 @@ const ContactForm = () => {
         <textarea 
             name="message" 
             id="message"
+            className="squircle-xl"
             rows={4}
             required
             aria-required="true"
@@ -107,7 +120,7 @@ const ContactForm = () => {
         <input 
             type="submit" 
             value="Send"
-            className="form-submit" 
+            className="form-submit squircle-xl" 
         />
     </form>
   )
