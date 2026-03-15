@@ -120,7 +120,7 @@ const SpiderModel = ({ className }: SpiderModelProps) => {
                     shadows
                     onCreated={({ gl }) => {
                         gl.shadowMap.enabled = true
-                        gl.shadowMap.type = THREE.PCFSoftShadowMap
+                        gl.shadowMap.type = THREE.PCFShadowMap
                     }}
                     camera={{ position: [0, 0, 11] }}
                 >

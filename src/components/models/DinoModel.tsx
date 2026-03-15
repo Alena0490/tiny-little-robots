@@ -37,7 +37,7 @@ const FixedLights = () => {
                 shadow-camera-far={50}
                 shadow-camera-near={0.1}
             />
-            <directionalLight position={[-5, 2, -5]} intensity={1} color="#88ff88 (" />
+            <directionalLight position={[-5, 2, -5]} intensity={1} color="#88ff88" />
         </>
     )
 }
@@ -108,7 +108,7 @@ const DinoModel = ({ className }: DinoModelProps) => {
                     shadows
                     onCreated={({ gl }) => {
                         gl.shadowMap.enabled = true
-                        gl.shadowMap.type = THREE.PCFSoftShadowMap
+                        gl.shadowMap.type = THREE.PCFShadowMap
                     }}
                     camera={{ position: [0, 0, 11] }}
                 >
