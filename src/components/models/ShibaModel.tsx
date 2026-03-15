@@ -46,41 +46,40 @@ const Scene = () => {
     const ref = useRef<THREE.Group>(null!)
     const gltf = useGLTF(modelPath) as GLTFResult
     const offset = useMemo(() => {
-        const box = new THREE.Box3().setFromObject(gltf.scene)
-        const center = new THREE.Vector3()
-        box.getCenter(center)
-        return center
-    }, [gltf])
+    const box = new THREE.Box3().setFromObject(gltf.scene)
+    const center = new THREE.Vector3()
+    box.getCenter(center)
+    return center
+}, [gltf])
     
-        useEffect(() => {
-            gltf.scene.traverse((child: THREE.Object3D) => {
-                if (child instanceof THREE.Mesh) {
-                    const mat = child.material as THREE.MeshPhysicalMaterial
-                    if (mat.name === 'material_0') {
-                        mat.roughness = 0.1
-                        mat.metalness = 0.3
-                        mat.needsUpdate = true
-                    }
-                }
-            })
-        }, [gltf])
+useEffect(() => {
+    gltf.scene.traverse((child: THREE.Object3D) => {
+        if (child instanceof THREE.Mesh) {
+            const mat = child.material as THREE.MeshPhysicalMaterial
+            if (mat.name === 'material_0') {
+                mat.roughness = 0.1
+                mat.metalness = 0.3
+                mat.needsUpdate = true
+            }
+        }
+    })
+}, [gltf])
 
     useFrame(() => {
         ref.current.rotation.y += 0.005
     })
-
+    
     return (
-        <group 
-            ref={ref} 
-            scale={0.035} 
-            position={[
-                -offset.x * 0.035, 
-                -offset.y * 0.035 + 1, 
-                -offset.z * 0.035
-            ]}
-        >
-            <primitive object={gltf.scene} />
+        <group ref={ref} scale={0.03}>
+            <group position={[
+                -offset.x, 
+                -offset.y + 30, 
+                -offset.z
+            ]}>
+                <primitive object={gltf.scene} />
+            </group>
         </group>
+
     )
 }
 

@@ -3,8 +3,19 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    row-gap: 2rem;
-    margin: 1rem auto 2rem;
+    justify-content: center;
+    gap: clamp(1.25rem, 2vw, 2rem);
+    margin: 1.5rem auto 0;
 }
 
+#shop {
+  width: min(1400px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: clamp(2rem, 4vw, 4rem) 0 clamp(3rem, 6vw, 5rem);
+}
+
+#shop h2 {
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 18px oklch(from var(--main-color) l c h / 0.2);
+}

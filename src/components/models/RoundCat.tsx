@@ -83,7 +83,7 @@ const Scene = () => {
     })
 
     return (
-        <group ref={ref} scale={2} position={[0, 1, 0]}>
+        <group ref={ref} scale={1.8} position={[0, 0.5, 0]}>
             <primitive object={gltf.scene} />
         </group>
     )

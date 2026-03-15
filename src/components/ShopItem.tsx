@@ -2,22 +2,39 @@
 import "./ShopItem.css"
 import shopItems from "../data/shopItems"
 
-const ShopItem = () => {
-  return (
-        <>
-      {shopItems.map(item => {
-        const Model = item.model
-        return (
-          <div key={item.id} className="shop-item">
-            <h3>{item.name}</h3>
-            <Model className="model"/>
-            <p className="price">{item.price} USD</p>
-          </div>
-        )
-      })}
-    </>
+interface ShopItemProps {
+     filterProductFunction: typeof shopItems
+     handleCart: (product: typeof shopItems[0]) => void
+}
 
-  )
+const ShopItem = ({ filterProductFunction, handleCart }: ShopItemProps) => {
+    return (
+        <>
+            <div className="product-list">
+                {filterProductFunction.length === 0 ? (
+                <p className="no-results">Sorry, No matching Product found.</p>
+                ) : (
+                filterProductFunction.map((product) => {
+                    const Model = product.model
+                    return (
+                    <div key={product.id} className="shop-item">
+                        <h3>{product.name}</h3>
+                        <p className="product-description">{product.description}</p>
+                        <Model className="model" />
+                        <p className="price">{product.price} USD</p>
+                        <button 
+                            className="cart-button"
+                            onClick={() => handleCart(product)}
+                        >
+                            Add to cart
+                        </button>
+                    </div>
+                    )
+                })
+                )}
+            </div>
+        </>
+    )
 }
 
 export default ShopItem
