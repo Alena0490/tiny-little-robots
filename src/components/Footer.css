@@ -1,0 +1,71 @@
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 1rem 2rem;
+    gap: 1rem;
+    border-block: 3px solid var(--border-light);
+    background: var(--background-elevated-tr);
+    backdrop-filter: blur(10px);
+}
+
+.socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.socials a {
+    color: inherit;
+    text-decoration: none;
+    font-size: var(--text-base);
+    transition: color var(--transition-normal);
+}
+
+.socials a:hover {
+    color: var(--main-color-light);
+    text-shadow: 0 0 32px oklch(from var(--main-color-light) l c h / .5);
+}
+
+.social {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    line-height: 1;
+}
+
+.social::after {
+    content: "";
+    border-block-start: 3px solid transparent;
+    border-block-end: 3px solid transparent;
+
+    background: 
+        radial-gradient(var(--background-color)) padding-box,
+        radial-gradient(var(--main-color), transparent) border-box;
+
+    position: absolute;
+    position-anchor: --active-nav;
+
+    left: calc(anchor(left) - var(--nav-indicator-offset));
+    right: calc(anchor(right) - var(--nav-indicator-offset));
+    top: anchor(top --nav-ul);
+    bottom: anchor(bottom --nav-ul);
+
+    pointer-events: none;
+    z-index: -1;
+
+    opacity: 0;
+    transition: inset 300ms, opacity 700ms;
+    transition-delay: 700ms, 0ms;
+}
+
+.social a:is(:hover, :focus) {
+    anchor-name: --active-nav; 
+    background: var(--main-color-light);
+    box-shadow: 0 0 32px oklch(from var(--main-color) l c h / .5);
+}
+
+.copyright {
+    font-size: var(--text-base);
+}

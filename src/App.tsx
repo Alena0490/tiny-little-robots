@@ -4,6 +4,7 @@ import Menu from "./components/Menu"
 import Hero from "./components/Hero"
 import Shop from "./components/Shop";
 import Form from "./components/ContactForm"
+import Footer from "./components/Footer";
 import "./App.css"
 
 const App = () => {
@@ -43,7 +44,7 @@ const App = () => {
             </section>
           </main>
         </Parallax>
-      <footer></footer>
+      <Footer/>
     </div>
   )
 }
