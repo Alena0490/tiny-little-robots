@@ -64,6 +64,12 @@
         0 0 24px oklch(from var(--main-color) l c h / 0.12);
 }
 
+.shop-item:hover button.cart-button {
+   box-shadow:
+        0 2px 8px oklch(from var(--background-elevated-2) l c h / 0.52),
+        inset 0 1px 0 hsl(0 0% 100% / 0.22);
+}
+
 .shop-item .model-wrap {
     width: 180%;
     height: 130%;

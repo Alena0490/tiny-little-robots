@@ -26,10 +26,10 @@ const FixedLights = () => {
 
     return (
         <>
-            <ambientLight intensity={0.9} />
+            <ambientLight intensity={0.7} />
             <directionalLight
                 ref={lightRef}
-                intensity={4}
+                intensity={1.7}
                 color="#ffffff"
                 castShadow
                 shadow-mapSize={[1024, 1024]}
@@ -37,7 +37,7 @@ const FixedLights = () => {
                 shadow-camera-far={50}
                 shadow-camera-near={0.1}
             />
-            <directionalLight position={[-5, 2, -5]} intensity={0.7} color="#8888ff" />
+            <directionalLight position={[-5, 2, -5]} intensity={0.25} color="#ff1493" />
         </>
     )
 }
@@ -53,17 +53,18 @@ const Scene = () => {
                 child.receiveShadow = true
                 const mat = child.material as THREE.MeshStandardMaterial
                 if (mat.name === 'plastic') {
-                    mat.color.set('#c2d2d2')
-                    mat.roughness = 0.4
-                    mat.metalness = 0.1
+                    mat.color.set('#ff69b4')
+                    mat.roughness = 1
+                    mat.metalness = 0
                 }
                 if (mat.name === 'plastic.001') {
                     mat.color.set('#0B2918')
-                    mat.roughness = 0.8
+                    mat.roughness = 0.9
+                    mat.metalness = 0.1
                 }
                 if (mat.name === 'Metal') {
                     mat.color.set('#b0c0c0')
-                    mat.metalness = 0.5
+                    mat.metalness = 0.9
                     mat.roughness = 0.15
                 }
                 if (mat.name === 'eyes') {

@@ -4,7 +4,7 @@ import { Canvas } from '@react-three/fiber'
 import type { GLTF } from 'three-stdlib'
 import { useGLTF, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
-import modelPath from "../models/robotic_cat.glb"
+import modelPath from "../models/robotic_cat - kopie.glb"
 import "./Model.css"
 
 type GLTFResult = GLTF & {
@@ -55,7 +55,7 @@ const Model = () => {
     })
 
     return (
-        <group ref={ref} scale={0.025} position={[0, -1, 0]}>
+        <group ref={ref} scale={0.027} position={[0, -1, 0]}>
             <primitive object={gltf.scene} />
         </group>
     )
