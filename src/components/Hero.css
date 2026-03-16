@@ -66,4 +66,9 @@ section.hero {
     color: var(--text-muted);
     font-size: clamp(2.625rem, 0.9177rem + 8.5366vw, 4.375rem);
     cursor: pointer;
+    transition: tranform var(--transition-slow);
+}
+
+.arrow:hover {
+    transform: scale(1.1);
 }

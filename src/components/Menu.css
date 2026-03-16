@@ -5,7 +5,6 @@
     anchor-name: --active-nav;
     width: 100%;
     margin-inline: auto;
-    backdrop-filter: blur(10px);
     z-index: 1;
 }
 
@@ -17,7 +16,7 @@
     display: flex;
     justify-content: center;
     background: var(--background-elevated-tr);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(var(--surface-blur));
     gap: 1rem;
     padding: 2rem;
 }

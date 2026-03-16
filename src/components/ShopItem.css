@@ -25,7 +25,7 @@
     gap: 0.5rem;
     padding: 2rem;
     overflow: visible;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(--surface-blur);
     padding: 1.25rem 1.25rem 5.5rem;
     border: 1px solid var(--border-color);
     background:

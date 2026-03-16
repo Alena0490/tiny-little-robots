@@ -3,7 +3,7 @@ import "./Hero.css"
 import { LuChevronsDown } from "react-icons/lu";
 
 interface ScrollProps {
-    scrollTo: (id: string) => void
+    scrollTo: (id: string) => void,
 }
 
 const Hero = ({ scrollTo }: ScrollProps) => {
@@ -15,14 +15,14 @@ const Hero = ({ scrollTo }: ScrollProps) => {
             <p className="hero-text">Get your own Robot Friend. Original Robots for everyone.</p>
             <p className="secondary">Click to the Robot for zooming.</p>
         </div>
-        <Model/>
+        <Model />
         <div className="cta">
             <button className="squircle-xl">Book</button>
             <button className="squircle-xl" onClick={() => scrollTo('shop')}>Products</button>
         </div>
-        <a onClick={() => scrollTo('about')}>        
+        <button className="scroll-btn" onClick={() => scrollTo('about')}>        
             <LuChevronsDown className="arrow" />
-        </a>
+        </button>
     </section>
   )
 }

@@ -1,0 +1,190 @@
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-overlay);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-lg);
+    background: rgb(0 0 0 / 0.55);
+}
+
+.checkout-modal {
+    position: relative;
+    width: min(100%, 700px);
+    max-height: min(80vh, 900px);
+    overflow-y: auto;
+    scrollbar-color: var(--text-faint) var(--background-elevated-tr);
+    scrollbar-width: thin;
+    padding: var(--spacing-lg);
+    border: var(--surface-border);
+    background: var(--surface-bg-panel);
+    backdrop-filter: blur(var(--surface-blur));
+    box-shadow: var(--shadow-soft);
+    animation: modal-in var(--transition-slow) forwards;
+    z-index: var(--z-modal);
+}
+
+.checkout-modal.is-closing {
+    pointer-events: none;
+    animation: modal-out var(--transition-slow) forwards;
+}
+
+.checkout-modal section {
+    min-height: unset;
+    max-width: unset;
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+
+.modal-close {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    width: 2.5rem;
+    height: 2.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: var(--interactive-border);
+    border-radius: 50%;
+    background: var(--interactive-bg);
+    color: var(--text-color);
+    font: inherit;
+    font-size: var(--text-h3);
+    line-height: 1;
+    cursor: pointer;
+    transition:
+        background-color var(--transition-fast),
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        color var(--transition-fast);
+}
+
+.modal-close:hover,
+.modal-close:focus-visible {
+    background: var(--interactive-hover-bg);
+    border-color: var(--border-accent);
+    box-shadow: var(--glow-soft);
+    outline: none;
+}
+
+.checkout-modal .pay-section + .pay-section {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--border-light);
+}
+.checkout-modal h3 {
+    margin-bottom: var(--spacing-sm);
+    text-transform: uppercase;
+    color: var(--main-color);
+}
+
+.order-check ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin: 0 0 var(--spacing-md);
+    padding: 0;
+}
+
+.order-check li {
+    display: grid;
+    grid-template-columns: 56px minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background: var(--background-elevated-tr);
+}
+
+.order-check img {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-light);
+}
+
+.order-check p {
+    margin-top: var(--spacing-sm);
+    font-size: var(--text-h3);
+    color: var(--text-color);
+}
+
+.pay-section > div {
+    display: grid;
+    gap: var(--spacing-xs);
+}
+
+.pay-section label {
+    margin-top: var(--spacing-sm);
+    font-size: var(--text-base);
+    text-transform: uppercase;
+}
+
+.pay-section input {
+    width: 100%;
+    appearance: none;
+    outline: none;
+    padding: var(--interactive-padding-y) var(--interactive-padding-x);
+    border: 1px solid var(--border-color);
+    background: var(--background-elevated-tr);
+    color: var(--text-color);
+    font: inherit;
+    transition:
+        background-color var(--transition-normal),
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.pay-section input:focus {
+    background-color: var(--background-elevated);
+}
+
+.pay-section input:focus-visible {
+    outline: none;
+    border-color: var(--border-accent);
+    box-shadow: 0 0 0 2px var(--focus-ring);
+}
+
+/* KEYFRAMES */
+@keyframes modal-out {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+    }
+}
+
+/* REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+    .checkout-modal,
+    .checkout-modal.is-closing {
+        animation: none;
+    }
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 720px) {
+    .modal-backdrop {
+        padding: var(--spacing-md);
+    }
+
+    .checkout-modal {
+        padding: var(--spacing-md);
+    }
+
+    .order-check li {
+        grid-template-columns: 48px minmax(0, 1fr);
+    }
+}
+
+

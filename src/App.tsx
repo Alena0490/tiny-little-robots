@@ -1,13 +1,65 @@
 import { Parallax } from "react-parallax";
+import { useState, useEffect } from "react";
+import shopItems from "./data/shopItems"
 import bgImage from "./img/red-purple.webp";
 import Menu from "./components/Menu"
 import Hero from "./components/Hero"
 import Shop from "./components/Shop";
 import Form from "./components/ContactForm"
 import Footer from "./components/Footer";
+import CheckoutModal from "./components/CheckoutModal"
 import "./App.css"
 
 const App = () => {
+    // Modal oepning
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [shoppingCart, setShoppingCart] = useState<{product: typeof shopItems[0], quantity: number}[]>([])
+    const [searchProduct, setSearchProduct] = useState('');
+      
+    // PRODUCT SEARCH
+    const handleProductSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchProduct(event.target.value);
+    };
+
+    const filterProductFunction = shopItems.filter((product) =>
+      product.name.toLowerCase().includes(searchProduct.toLowerCase())
+    );
+
+    // ADD TO CART
+    const handleCart = (product: typeof shopItems[0]) => {
+      const alreadyCourses = shoppingCart
+        .find(item => item.product.id === product.id);
+      if (alreadyCourses) {
+        const latestCartUpdate = shoppingCart.map(item =>
+          item.product.id === product.id ? { 
+          ...item, quantity: item.quantity + 1 } 
+          : item
+        );
+        setShoppingCart(latestCartUpdate);
+      } else {
+        setShoppingCart([...shoppingCart, {product: product, quantity: 1}]);
+      }
+    };
+
+    // REMOVE ITEM FROM CART
+    const removeItem = (product: typeof shopItems[0]) => {
+      const updatedCart = shoppingCart
+        .filter(item => item.product.id !== product.id);
+      setShoppingCart(updatedCart);
+    };
+
+      // CALCULATE THE TOTAL PRICE
+    const totalAmountCalculationFunction = () => {
+      return shoppingCart
+        .reduce((total, item) => 
+          total + item.product.price * item.quantity, 0);
+    };
+
+     useEffect(() => {
+        document.body.style.overflow = isModalOpen ? "hidden" : "";
+        return () => { document.body.style.overflow = ""; };
+    }, [isModalOpen]);
+
   // Page scrolling
   const scrollTo = (id: string) => {
     if (id === 'home') {
@@ -22,6 +74,13 @@ const App = () => {
 
   return (
     <div className="content">
+      {isModalOpen && (
+        <CheckoutModal 
+            onClose={() => setIsModalOpen(false)}
+            shoppingCart={shoppingCart}
+            totalAmountCalculationFunction={totalAmountCalculationFunction}
+        />
+      )}
       <header>
         <Menu
         scrollTo={scrollTo}/>
@@ -37,7 +96,17 @@ const App = () => {
 
                 <p>Tiramisu candy cake icing muffin. Sweet chocolate bar toffee jelly chupa chups. Tart halvah sesame snaps gummi bears dragée sugar plum wafer dessert gingerbread. Candy jelly ice cream lemon drops sesame snaps sugar plum chupa chups danish marzipan. Oat cake liquorice candy canes cookie cotton candy. Pastry icing candy canes chocolate chocolate cake chocolate cake. Gummies pudding chocolate bar donut tootsie roll halvah. Jelly biscuit biscuit cotton candy donut jelly beans jujubes donut marzipan. Pudding dragée liquorice shortbread croissant jujubes liquorice gummi bears. Tiramisu oat cake gingerbread cupcake pudding pie croissant cheesecake.</p>
             </section>
-            <Shop/>
+            <Shop
+              setIsModalOpen={setIsModalOpen}
+              shoppingCart={shoppingCart}
+              setShoppingCart={setShoppingCart}
+              filterProductFunction={filterProductFunction}
+              handleProductSearch={handleProductSearch}
+              searchProduct={searchProduct}
+              handleCart={handleCart}
+              removeItem={removeItem}
+              totalAmountCalculationFunction={totalAmountCalculationFunction}
+            />
             <section id="contacts">
               <h2 id="contact-heading">Contact us</h2>
               <Form/>

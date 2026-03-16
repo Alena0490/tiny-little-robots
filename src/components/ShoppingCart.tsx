@@ -1,5 +1,6 @@
-import shopItems from "../data/shopItems"
-import "./ShoppingCart.css"
+import shopItems from '../data/shopItems'
+import './ShoppingCart.css'
+import './CheckoutModal'
 
 type CartItem = {
     product: typeof shopItems[0]
@@ -11,7 +12,8 @@ interface ShoppingCartProps {
     removeItem: (product: typeof shopItems[0]) => void
     totalAmountCalculationFunction: () => number
     setShoppingCart: React.Dispatch<React.SetStateAction<CartItem[]>>
-    className?: string
+    className?: string,
+    setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const ShoppingCart = ({
@@ -19,8 +21,10 @@ const ShoppingCart = ({
     removeItem,
     totalAmountCalculationFunction,
     setShoppingCart,
-    className
+    className,
+    setIsModalOpen
 }: ShoppingCartProps) => {
+
     return (
         <div className={`cart squircle-xl ${shoppingCart.length > 0 ? 'active' : ''} ${className ?? ''}`}>
             <h3>My Cart</h3>
@@ -30,27 +34,27 @@ const ShoppingCart = ({
                 <div>
                     <ul>
                         {shoppingCart.map((item) => (
-                            <li key={item.product.id} className="cart-item">
+                            <li key={item.product.id} className='cart-item'>
                                 <div>
-                                    <div className="item-info">
-                                        <div className="item-image">
+                                    <div className='item-info'>
+                                        <div className='item-image'>
                                             <img src={item.product.img} 
                                                 alt={item.product.alt} />
                                         </div>
-                                        <div className="item-details">
+                                        <div className='item-details'>
                                             <h3>{item.product.name}</h3>
                                             <p>Price: {item.product.price} USD</p>
                                         </div>
                                     </div>
                                     <div>
-                                        <div className="item-actions">
+                                        <div className='item-actions'>
                                             <button
-                                                className="remove-button"
+                                                className='remove-button'
                                                 onClick={() => 
                                                 removeItem(item.product)}>
                                                 Remove Product
                                             </button>
-                                            <div className="quantity">
+                                            <div className='quantity'>
                                                 <button
                                                     onClick={() => {
                                                     setShoppingCart((prevCartCourses) => {
@@ -94,6 +98,7 @@ const ShoppingCart = ({
                             className="checkout-button"
                             disabled={shoppingCart.length === 0 || 
                             totalAmountCalculationFunction() === 0}
+                            onClick={() => setIsModalOpen(true)}
                         >Proceed to Payment</button>
                     </div>
                 </div>
