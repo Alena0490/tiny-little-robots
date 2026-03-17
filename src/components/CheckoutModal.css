@@ -122,12 +122,11 @@
 }
 
 .pay-section label {
-    margin-top: var(--spacing-sm);
     font-size: var(--text-base);
     text-transform: uppercase;
 }
 
-.pay-section input {
+.pay-section input:not([type="checkbox"]) {
     width: 100%;
     appearance: none;
     outline: none;
@@ -142,15 +141,95 @@
         box-shadow var(--transition-fast);
 }
 
-.pay-section input:focus {
-    background-color: var(--background-elevated);
-}
-
-.pay-section input:focus-visible {
+.pay-section input:not([type="checkbox"]):focus-visible {
     outline: none;
     border-color: var(--border-accent);
     box-shadow: 0 0 0 2px var(--focus-ring);
 }
+
+.pay-section input:not([type="checkbox"]):focus-visible {
+    outline: none;
+    border-color: var(--border-accent);
+    box-shadow: 0 0 0 2px var(--focus-ring);
+}
+
+.pay-section .checkbox-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+}
+
+.checkbox-row label {
+    width: auto;
+    margin: 0;
+    font-size: var(--text-base);
+    line-height: 1.4;
+    text-transform: none;
+    order: 2;
+}
+
+.checkbox-row input[type="checkbox"] {
+    order: 1;
+    flex: 0 0 auto;
+    width: 1rem;
+    height: 1rem;
+    margin: 0;
+    accent-color: var(--main-color);
+    appearance: auto;
+}
+
+.field-error {
+    display: block;
+    margin-top: var(--spacing-sm);
+    color: var(--error-color);
+}
+
+
+.payment-button {
+  width: 100%;
+  border: 1px solid var(--border-accent);
+  border-radius: 999px;
+  margin-top: var(--spacing-md);
+  padding: 0.9rem 1rem;
+  background:
+    linear-gradient(180deg, oklch(from var(--main-color) calc(l - .02) c h / 0.95), oklch(from var(--main-color) calc(l - .12) c h / 0.95));
+  color: white;
+  font: inherit;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition:
+    transform var(--transition-fast),
+    filter var(--transition-fast),
+    opacity var(--transition-fast),
+    box-shadow var(--transition-fast);
+  box-shadow:
+    0 8px 24px oklch(from var(--main-color) l c h / 0.22),
+    inset 0 1px 0 hsl(0 0% 100% / 0.22);
+}
+
+.payment-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.payment-button:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px var(--focus-ring),
+    0 8px 24px oklch(from var(--main-color) l c h / 0.22);
+}
+
+.payment-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.15);
+  box-shadow: none;
+}
+
 
 /* KEYFRAMES */
 @keyframes modal-out {

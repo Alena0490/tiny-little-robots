@@ -24,7 +24,8 @@
     box-shadow: var(--shadow-soft);
 }
 
-.form input, .form textarea {
+.form input, 
+.form textarea {
     width: 100%;
     appearance: none;
     outline: none;
@@ -38,7 +39,8 @@
     transition: background-color var(--transition-slow), border var(--transition-slow);
 }
 
-.form input:focus, .form textarea:focus {
+.form input:focus, 
+.form textarea:focus {
     border: 1px solid var(--text-muted);
     background-color: var(--background-elevated);
 }

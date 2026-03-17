@@ -95,7 +95,7 @@ const ShoppingCart = ({
                                     </p>
                                 </div>
                         <button
-                            className="checkout-button"
+                            className="checkout-button squircle-xl"
                             disabled={shoppingCart.length === 0 || 
                             totalAmountCalculationFunction() === 0}
                             onClick={() => setIsModalOpen(true)}

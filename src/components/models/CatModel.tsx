@@ -26,10 +26,10 @@ const FixedLights = () => {
 
     return (
         <>
-            <ambientLight intensity={0.7} />
+            <ambientLight intensity={1} />
             <directionalLight
                 ref={lightRef}
-                intensity={1.7}
+                intensity={1.8}
                 color="#ffffff"
                 castShadow
                 shadow-mapSize={[1024, 1024]}
@@ -37,7 +37,7 @@ const FixedLights = () => {
                 shadow-camera-far={50}
                 shadow-camera-near={0.1}
             />
-            <directionalLight position={[-5, 2, -5]} intensity={0.25} color="#ff1493" />
+            <directionalLight position={[-5, 2, -5]} intensity={0.25} color="#ff69b4" />
         </>
     )
 }
