@@ -105,7 +105,7 @@ const CheckoutModal = ({ onClose, shoppingCart, totalAmountCalculationFunction }
                     name: item.product.name,
                     price: item.product.price,
                     units: item.quantity,
-                    image: item.product.imgUrl
+                    image_url: item.product.imgUrl
                 })),
                 cost: {
                     shipping: 0,
