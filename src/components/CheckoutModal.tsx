@@ -104,7 +104,8 @@ const CheckoutModal = ({ onClose, shoppingCart, totalAmountCalculationFunction }
                 orders: shoppingCart.map(item => ({
                     name: item.product.name,
                     price: item.product.price,
-                    units: item.quantity
+                    units: item.quantity,
+                    image: item.product.imgUrl
                 })),
                 cost: {
                     shipping: 0,
