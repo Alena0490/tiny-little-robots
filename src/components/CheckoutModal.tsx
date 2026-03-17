@@ -109,7 +109,8 @@ const CheckoutModal = ({ onClose, shoppingCart, totalAmountCalculationFunction }
                 })),
                 cost: {
                     shipping: 0,
-                    tax: 0
+                    tax: 0,
+                    total: totalAmountCalculationFunction()
                 }
             },
             "Q5Ztx5pAS5z8gSFkK"
