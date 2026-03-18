@@ -54,9 +54,11 @@ canvas {
 /*** MEDIA */ 
 @media (max-width: 768px) {
 
-    .model-wrap {
+    .shop-item .model-wrap  {
+        width: 80%;
         height: 100%;
         overflow: hidden;
+        bottom: -20%;
     }
 
     canvas {
@@ -65,12 +67,12 @@ canvas {
         pointer-events: none;
     }
 
-    .model-wrap.active canvas {
+    .shop-item .model-wrap.active canvas {
         pointer-events: auto;
     }
 }
 
-/*** KEXFRAMES */
+/*** KEYFRAMES */
 @keyframes FadeOut {
   0% {
     opacity: 1;

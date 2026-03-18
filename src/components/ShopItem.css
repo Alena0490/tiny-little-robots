@@ -216,6 +216,29 @@
   background: hsl(0 0% 100% / 0.02);
 }
 
+/*** MEDIA */ 
+@media (max-width: 768px) {
+
+    .shop-item .model-wrap  {
+        display: flex;
+        justify-content: center;
+        width: 80%;
+        height: 100%;
+        overflow: hidden;
+        bottom: 0;
+    }
+    
+    .shop-item .model-wrap.active canvas {
+        pointer-events: auto;
+    }
+
+   .shop-model canvas {
+        width: 100%; 
+        height: 140%;
+        pointer-events: none;
+    }
+}
+
 /*** KEYFRAMES */
 @keyframes pulse {
     0%, 100% { opacity: 0.4; }
