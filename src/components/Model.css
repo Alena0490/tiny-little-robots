@@ -17,7 +17,6 @@
     isolation: isolate;
     overflow: visible;
     z-index: 10;
-    touch-action: none;
 }
 
 canvas { 
@@ -52,8 +51,20 @@ canvas {
     filter: hue-rotate(80deg)  brightness(1.3);
 }
 
+/*** MEDIA */ 
+@media (max-width: 768px) {
+    canvas {
+        width: 120%; 
+        height: 140%;
+        pointer-events: none;
+    }
 
+    .model-wrap.active canvas {
+        pointer-events: auto;
+    }
+}
 
+/*** KEXFRAMES */
 @keyframes FadeOut {
   0% {
     opacity: 1;
