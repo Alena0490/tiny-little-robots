@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     gap: var(--spacing-lg);
-    margin-bottom: 4rem;
+    margin-bottom: var(--spacing-lg);
     padding: 2rem;
     backdrop-filter: blur(10px);
     border: 1px solid var(--border-color);

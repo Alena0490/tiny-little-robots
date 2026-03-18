@@ -99,7 +99,7 @@ const App = () => {
             <Suspense fallback={<div>Loading...</div>}>
               <About/>
             </Suspense>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<div className='shop-fallback'>Loading...</div>}>
               <Shop
                 setIsModalOpen={setIsModalOpen}
                 shoppingCart={shoppingCart}

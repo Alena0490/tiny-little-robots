@@ -80,7 +80,11 @@ const RamboModal = ({ className }: RamboModalProps) => {
 
     useEffect(() => {
         const observer = new IntersectionObserver(([entry]) => {
-            if (entry.isIntersecting) setVisible(true)
+            if (entry.isIntersecting) {
+                setVisible(true)
+            } else {
+                setTimeout(() => setVisible(false), 1000)
+            }
         }, { threshold: 0.1 })
         if (wrapRef.current) observer.observe(wrapRef.current)
         return () => observer.disconnect()
@@ -102,7 +106,7 @@ const RamboModal = ({ className }: RamboModalProps) => {
             {visible && (
                 <Canvas
                     className={`shop-model ${className ?? ''}`}
-                    gl={{ antialias: false }}
+                    gl={{ powerPreference: 'low-power', antialias: false }}
                     id='shop-model'
                     shadows
                     onCreated={({ gl }) => {

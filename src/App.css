@@ -30,6 +30,11 @@ section {
   flex-direction: column;
 }
 
+.shop-fallback {
+  min-height: 200px;
+  background: none;
+}
+
 @media (max-width: 950px) {
   section:not(.hero) {
     margin: 1rem 2rem 2rem;

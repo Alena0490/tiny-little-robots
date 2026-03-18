@@ -93,7 +93,11 @@ const CatModelHomepage = ({ className }: CatModelHomepageProps) => {
 
     useEffect(() => {
         const observer = new IntersectionObserver(([entry]) => {
-            if (entry.isIntersecting) setVisible(true)
+            if (entry.isIntersecting) {
+                setVisible(true)
+            } else {
+                setVisible(false)
+            }
         }, { threshold: 0.1 })
         if (wrapRef.current) observer.observe(wrapRef.current)
         return () => observer.disconnect()
