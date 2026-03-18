@@ -31,7 +31,7 @@ section {
 }
 
 .shop-fallback {
-  min-height: 200px;
+  min-height: 100vh;
   background: none;
 }
 
