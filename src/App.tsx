@@ -85,7 +85,11 @@ const App = () => {
         <Menu
         scrollTo={scrollTo}/>
       </header>
-        <Parallax  bgImage={bgImage}  strength={900} className="parallax-layer">
+        <Parallax  
+          bgImage={bgImage}  
+          strength={900} 
+          className="parallax-layer"
+        >
           <main>
             <Hero
               scrollTo={scrollTo}
