@@ -7,14 +7,13 @@ export default defineConfig({
   assetsInclude: ['**/*.glb'],
   build: {
     rollupOptions: {
-        output: {
-            manualChunks: {
-                'three': ['three'],
-                'react-three': ['@react-three/fiber', '@react-three/drei'],
-                'vendor': ['react', 'react-dom'],
-                'r3f': ['@react-three/fiber', '@react-three/drei'],
-            }
+      output: {
+        manualChunks: {
+          'three': ['three'],
+          'react-three': ['@react-three/fiber', '@react-three/drei'],
+          'vendor': ['react', 'react-dom'],
         }
+      }
     },
     sourcemap: true
   }
