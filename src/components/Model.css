@@ -24,7 +24,9 @@ canvas {
     margin-top: -2%;
     padding: 5rem 0rem 1rem; 
     overflow: visible;
+    background: transparent !important;
 }
+
 
 .model-hint {
     position: absolute;

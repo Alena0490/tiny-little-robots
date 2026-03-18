@@ -131,23 +131,16 @@
     text-shadow: 0 0 12px rgb(0 0 0 / 0.35);
 }
 
-.cart-button {
-    position: absolute;
-    left: 50%;
-    bottom: 1rem;
-    transform: translateX(-50%);
-    min-width: 160px;
-    padding: 0.75rem 1.1rem;
+.cart-button, .load-button {
     border: 1px solid var(--border-accent);
     border-radius: var(--radius-lg);
     corner-shape: squircle;
-    background:
-        linear-gradient(180deg, oklch(from var(--main-color) calc(l - .02) c h / 0.95), oklch(from var(--main-color) calc(l - .12) c h / 0.95));
-    color: white;
-    font: inherit;
+        font: inherit;
     font-weight: 700;
     letter-spacing: 0.03em;
     cursor: pointer;
+    min-width: 160px;
+    padding: 0.75rem 1.1rem;
     box-shadow:
         0 8px 24px oklch(from var(--main-color) l c h / 0.22),
         inset 0 1px 0 hsl(0 0% 100% / 0.22);
@@ -155,7 +148,23 @@
         transform var(--transition-fast),
         box-shadow var(--transition-fast),
         filter var(--transition-fast);
+}
+
+.cart-button {
+    position: absolute;
+    left: 50%;
+    bottom: 1rem;
+    transform: translateX(-50%);
+    background:
+        linear-gradient(180deg, oklch(from var(--main-color) calc(l - .02) c h / 0.95), oklch(from var(--main-color) calc(l - .12) c h / 0.95));
+    color: white;
   z-index: 2;
+}
+
+.load-button {
+    position: relative;
+    z-index: var(--z-nav);
+    margin-block: var(--spacing-md);
 }
 
 .cart-button:hover {
@@ -166,11 +175,24 @@
   filter: brightness(1.05);
 }
 
+.load-button:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 10px 28px oklch(from var(--main-color) l c h / 0.28),
+    inset 0 1px 0 hsl(0 0% 100% / 0.22);
+  filter: brightness(1.05);
+}
+
 .cart-button:active {
   transform: translateX(-50%) translateY(1px);
 }
 
-.cart-button:focus-visible {
+.load-button:active {
+  transform: translateY(1px);
+}
+
+.cart-button:focus-visible,
+.load-button:focus-visible {
   outline: none;
   box-shadow:
     0 0 0 3px var(--focus-ring),

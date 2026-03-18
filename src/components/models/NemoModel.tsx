@@ -78,11 +78,7 @@ const NemoModel = ({ className }: NemoModelProps) => {
 
     useEffect(() => {
         const observer = new IntersectionObserver(([entry]) => {
-            if (entry.isIntersecting) {
-                setVisible(true)
-            } else {
-                setTimeout(() => setVisible(false), 1000)
-            }
+            if (entry.isIntersecting) setVisible(true)
         }, { threshold: 0.1 })
         if (wrapRef.current) observer.observe(wrapRef.current)
         return () => observer.disconnect()
