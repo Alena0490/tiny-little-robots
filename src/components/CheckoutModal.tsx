@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import shopItems from '../data/shopItems'
 import emailjs from "@emailjs/browser"
 import './CheckoutModal.css'
@@ -118,6 +118,17 @@ const CheckoutModal = ({ onClose, shoppingCart, totalAmountCalculationFunction }
     }
 
     /*** PAYMENT */
+    /** GooglePay script preload */
+        useEffect(() => {
+            const script = document.createElement('script')
+            script.src = 'https://pay.google.com/gp/p/js/pay.js'
+            script.async = true
+            document.body.appendChild(script)
+            return () => {
+                document.body.removeChild(script)
+            }
+        }, [])
+
     const handlePayment = async () => {
         if (!validate()) return
 
