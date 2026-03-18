@@ -32,16 +32,16 @@ interface ScrollProps {
         
             <ul className={`nav-menu ${isOpen ? "nav-menu--open" : ""}`}>
                 <li className="nav-link">
-                    <a className="squircle-xl" onClick={() => scrollTo('home')}>Home</a>
+                    <a href="/" className="squircle-xl" onClick={() => scrollTo('home')}>Home</a>
                 </li>
                 <li className="nav-link">
-                    <a className="squircle-xl" onClick={() => scrollTo('about')}>About</a>
+                    <a href="#about" className="squircle-xl" onClick={(e: React.MouseEvent<HTMLAnchorElement>) => { e.preventDefault(); scrollTo('about') }}>About</a>
                 </li>
                 <li className="nav-link">
-                    <a className="squircle-xl" onClick={() => scrollTo('shop')}>Shop</a>
+                    <a href="#shop" className="squircle-xl" onClick={(e: React.MouseEvent<HTMLAnchorElement>) => { e.preventDefault(); scrollTo('shop') }}>Shop</a>
                 </li>
                 <li className="nav-link">
-                    <a className="squircle-xl" onClick={() => scrollTo('contacts')}>Contacts</a>
+                    <a href="#contacts" className="squircle-xl" onClick={(e: React.MouseEvent<HTMLAnchorElement>) => { e.preventDefault(); scrollTo('contacts') }}>Contacts</a>
                 </li>
             </ul>
         </nav>

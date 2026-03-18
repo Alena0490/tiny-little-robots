@@ -4,7 +4,7 @@ import { Canvas, useThree } from '@react-three/fiber'
 import type { GLTF } from 'three-stdlib'
 import { useGLTF, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
-import modelPath from "../../models/futuristic_robotic_guard_dog.glb"
+import modelPath from "../../models/futuristic_robotic_guard_dog-v1.glb"
 import "../Model.css"
 import "../ShopItem.css"
 

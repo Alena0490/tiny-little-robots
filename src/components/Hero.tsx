@@ -20,7 +20,11 @@ const Hero = ({ scrollTo }: ScrollProps) => {
             <button className="squircle-xl">Book</button>
             <button className="squircle-xl" onClick={() => scrollTo('shop')}>Products</button>
         </div>
-        <button className="scroll-btn" onClick={() => scrollTo('about')}>        
+        <button 
+            className="scroll-btn" 
+            aria-label="Scroll to about section"
+            onClick={() => scrollTo('about')}
+        >        
             <LuChevronsDown className="arrow" />
         </button>
     </section>
