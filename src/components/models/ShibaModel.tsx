@@ -1,15 +1,15 @@
-import { useFrame } from '@react-three/fiber'
+import { useFrame, useThree } from '@react-three/fiber'
 import { useState, useRef, useEffect, useMemo } from 'react'
-import { Canvas, useThree } from '@react-three/fiber'
+import { Canvas } from '@react-three/fiber'
 import type { GLTF } from 'three-stdlib'
 import { useGLTF, OrbitControls } from '@react-three/drei'
-import * as THREE from 'three'
+import { Mesh, MeshPhysicalMaterial, DirectionalLight, Group, Object3D, Box3, Vector3, PCFShadowMap } from 'three'
 import modelPath from '../../models/robo-shiba-v2.glb'
 import '../Model.css'
 import '../ShopItem.css'
 
 type GLTFResult = GLTF & {
-    scene: THREE.Group
+    scene: Group
 }
 
 type ShibaModalProps = {
@@ -18,7 +18,7 @@ type ShibaModalProps = {
 
 const FixedLights = () => {
     const { camera } = useThree()
-    const lightRef = useRef<THREE.DirectionalLight>(null!)
+    const lightRef = useRef<DirectionalLight>(null!)
 
     useFrame(() => {
         lightRef.current.position.copy(camera.position)
@@ -27,12 +27,12 @@ const FixedLights = () => {
     return (
         <>
             <ambientLight intensity={0.25} />
-            <directionalLight 
-                ref={lightRef} 
-                intensity={2.2} 
+            <directionalLight
+                ref={lightRef}
+                intensity={2.2}
                 color='#ffffff'
-                castShadow 
-                shadow-mapSize={[1024, 1024]} 
+                castShadow
+                shadow-mapSize={[1024, 1024]}
                 shadow-radius={50}
                 shadow-camera-far={50}
                 shadow-camera-near={0.1}
@@ -43,43 +43,42 @@ const FixedLights = () => {
 }
 
 const Scene = () => {
-    const ref = useRef<THREE.Group>(null!)
+    const ref = useRef<Group>(null!)
     const gltf = useGLTF(modelPath) as GLTFResult
     const offset = useMemo(() => {
-    const box = new THREE.Box3().setFromObject(gltf.scene)
-    const center = new THREE.Vector3()
-    box.getCenter(center)
-    return center
-}, [gltf])
-    
-useEffect(() => {
-    gltf.scene.traverse((child: THREE.Object3D) => {
-        if (child instanceof THREE.Mesh) {
-            const mat = child.material as THREE.MeshPhysicalMaterial
-            if (mat.name === 'material_0') {
-                mat.roughness = 0.1
-                mat.metalness = 0.3
-                mat.needsUpdate = true
+        const box = new Box3().setFromObject(gltf.scene)
+        const center = new Vector3()
+        box.getCenter(center)
+        return center
+    }, [gltf])
+
+    useEffect(() => {
+        gltf.scene.traverse((child: Object3D) => {
+            if (child instanceof Mesh) {
+                const mat = child.material as MeshPhysicalMaterial
+                if (mat.name === 'material_0') {
+                    mat.roughness = 0.1
+                    mat.metalness = 0.3
+                    mat.needsUpdate = true
+                }
             }
-        }
-    })
-}, [gltf])
+        })
+    }, [gltf])
 
     useFrame(() => {
         ref.current.rotation.y += 0.005
     })
-    
+
     return (
         <group ref={ref} scale={0.03}>
             <group position={[
-                -offset.x, 
-                -offset.y + 30, 
+                -offset.x,
+                -offset.y + 30,
                 -offset.z
             ]}>
                 <primitive object={gltf.scene} />
             </group>
         </group>
-
     )
 }
 
@@ -117,18 +116,16 @@ const ShibaModal = ({ className }: ShibaModalProps) => {
                     shadows
                     onCreated={({ gl }) => {
                         gl.shadowMap.enabled = true
-                        gl.shadowMap.type = THREE.PCFShadowMap
+                        gl.shadowMap.type = PCFShadowMap
                     }}
                     camera={{ position: [0, 0, 11] }}
                 >
                     <FixedLights />
                     <Scene />
-
                     <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1, 0]} receiveShadow>
                         <planeGeometry args={[20, 20]} />
                         <shadowMaterial opacity={0.4} />
                     </mesh>
-
                     <OrbitControls enableZoom={canvasActive} />
                 </Canvas>
             )}

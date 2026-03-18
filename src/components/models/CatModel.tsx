@@ -1,15 +1,15 @@
-import { useFrame } from '@react-three/fiber'
+import { useFrame, useThree } from '@react-three/fiber'
 import { useState, useRef, useEffect } from 'react'
-import { Canvas, useThree } from '@react-three/fiber'
+import { Canvas } from '@react-three/fiber'
 import type { GLTF } from 'three-stdlib'
 import { useGLTF, OrbitControls } from '@react-three/drei'
-import * as THREE from 'three'
+import { Mesh, MeshStandardMaterial, DirectionalLight, Group, Object3D, PCFShadowMap } from 'three'
 import modelPath from '../../models/robotic_cat-v1.glb'
 import '../Model.css'
 import '../ShopItem.css'
 
 type GLTFResult = GLTF & {
-    scene: THREE.Group
+    scene: Group
 }
 
 type CatModelProps = {
@@ -18,7 +18,7 @@ type CatModelProps = {
 
 const FixedLights = () => {
     const { camera } = useThree()
-    const lightRef = useRef<THREE.DirectionalLight>(null!)
+    const lightRef = useRef<DirectionalLight>(null!)
 
     useFrame(() => {
         lightRef.current.position.copy(camera.position)
@@ -43,15 +43,15 @@ const FixedLights = () => {
 }
 
 const Scene = () => {
-    const ref = useRef<THREE.Group>(null!)
+    const ref = useRef<Group>(null!)
     const gltf = useGLTF(modelPath) as GLTFResult
 
     useEffect(() => {
-        gltf.scene.traverse((child: THREE.Object3D) => {
-            if (child instanceof THREE.Mesh) {
+        gltf.scene.traverse((child: Object3D) => {
+            if (child instanceof Mesh) {
                 child.castShadow = true
                 child.receiveShadow = true
-                const mat = child.material as THREE.MeshStandardMaterial
+                const mat = child.material as MeshStandardMaterial
                 if (mat.name === 'plastic') {
                     mat.color.set('#ff69b4')
                     mat.roughness = 1
@@ -119,7 +119,7 @@ const CatModel = ({ className }: CatModelProps) => {
                     shadows
                     onCreated={({ gl }) => {
                         gl.shadowMap.enabled = true
-                        gl.shadowMap.type = THREE.PCFShadowMap
+                        gl.shadowMap.type = PCFShadowMap
                     }}
                     camera={{ position: [0, 0, 11] }}
                 >
