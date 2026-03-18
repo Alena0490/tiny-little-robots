@@ -4,7 +4,7 @@ import { Canvas, useThree } from '@react-three/fiber'
 import type { GLTF } from 'three-stdlib'
 import { useGLTF, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
-import modelPath from "../../models/weathered_penguin-bot-v1.glb"
+import modelPath from "../../models/weathered_penguin-bot-v2.glb"
 import "../Model.css"
 import "../ShopItem.css"
 
