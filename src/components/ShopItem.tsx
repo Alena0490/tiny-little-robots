@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import './ShopItem.css'
 import shopItems from '../data/shopItems'
 
@@ -6,6 +6,11 @@ interface ShopItemProps {
      filterProductFunction: typeof shopItems
      handleCart: (product: typeof shopItems[0]) => void
 }
+
+/*** MODEL FALLBACK */
+const ModelFallback = () => (
+    <div className="model model-placeholder" />
+)
 
 const ShopItem = ({ filterProductFunction, handleCart }: ShopItemProps) => {
     const [visibleCount, setVisibleCount] = useState(3)
@@ -20,7 +25,9 @@ const ShopItem = ({ filterProductFunction, handleCart }: ShopItemProps) => {
                         <div key={product.id} className="shop-item">
                             <h3>{product.name}</h3>
                             <p className="product-description">{product.description}</p>
-                            <Model className="model" />
+                            <Suspense fallback={<ModelFallback />}>
+                                <Model className="model" />
+                            </Suspense>
                             <p className="price">{product.price} USD</p>
                             <button 
                                 className='cart-button'

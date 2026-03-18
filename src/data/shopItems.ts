@@ -1,13 +1,14 @@
+import { lazy } from 'react'
 // MODELS
-import CatModel from '../components/models/CatModel'
-import RoundCat from '../components/models/RoundCat'
-import DinoModel from '../components/models/DinoModel'
-import DogModel from '../components/models/DogModel'
-import ShibaModel from '../components/models/ShibaModel'
-import RamboModel from '../components/models/RamboModel'
-import NemoModel from '../components/models/NemoModel'
-import PinguiModel from '../components/models/PinguiModel'
-import SpiderModel from '../components/models/SpiderModel'
+const CatModel  = lazy(() => import('../components/models/CatModel'))
+const RoundCat  = lazy(() => import('../components/models/RoundCat'))
+const DinoModel = lazy(() => import('../components/models/DinoModel'))
+const DogModel  = lazy(() => import('../components/models/DogModel'))
+const ShibaModel  = lazy(() => import('../components/models/ShibaModel'))
+const RamboModel  = lazy(() => import('../components/models/RamboModel'))
+const NemoModel   = lazy(() => import('../components/models/NemoModel'))
+const PinguiModel = lazy(() => import('../components/models/PinguiModel'))
+const SpiderModel = lazy(() => import('../components/models/SpiderModel'))
 
 //IMAGES
 import kitty from '../img/kitty.png'

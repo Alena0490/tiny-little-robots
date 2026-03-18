@@ -120,6 +120,13 @@
     z-index: 2;
 }
 
+.model-placeholder {
+    width: 100%;
+    aspect-ratio: 1; 
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    animation: pulse 1.5s ease-in-out infinite;
+}
 
 .price {
     position: absolute;
@@ -207,4 +214,10 @@
   border: 1px dashed var(--border-light);
   border-radius: var(--radius-xl);
   background: hsl(0 0% 100% / 0.02);
+}
+
+/*** KEYFRAMES */
+@keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50%       { opacity: 0.8; }
 }
