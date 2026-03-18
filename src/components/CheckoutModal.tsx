@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import shopItems from '../data/shopItems'
-import emailjs from "@emailjs/browser"
+import emailjs from '@emailjs/browser'
 import './CheckoutModal.css'
 
 type CartItem = {
@@ -96,8 +96,8 @@ const CheckoutModal = ({ onClose, shoppingCart, totalAmountCalculationFunction }
     /*** ORDER CONFIRMATION */
     const sendOrderConfirmation = async (email: string) => {
         await emailjs.send(
-            "service_k1i50up",
-            "template_g6r6tll",
+            'service_k1i50up',
+            'template_g6r6tll',
             {
                 order_id: Math.random().toString(36).substr(2, 9).toUpperCase(),
                 email: email,
@@ -113,7 +113,7 @@ const CheckoutModal = ({ onClose, shoppingCart, totalAmountCalculationFunction }
                     total: totalAmountCalculationFunction()
                 }
             },
-            "Q5Ztx5pAS5z8gSFkK"
+            'Q5Ztx5pAS5z8gSFkK'
         )
     }
 
@@ -177,21 +177,21 @@ const CheckoutModal = ({ onClose, shoppingCart, totalAmountCalculationFunction }
     
 
   return (
-    <div className="modal-backdrop" onClick={handleClose}>
+    <div className='modal-backdrop' onClick={handleClose}>
         <div
             className={`squircle-xl checkout-modal ${isClosing ? 'is-closing' : ''}`}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="checkout-title"
+            role='dialog'
+            aria-modal='true'
+            aria-labelledby='checkout-title'
             onClick={(e) => e.stopPropagation()}
         >
             <button 
                 className='modal-close' 
                 onClick={handleClose}
-                aria-label="Close checkout modal"
+                aria-label='Close checkout modal'
             >✕</button>
             <section className='pay-section'>
-                <h3 id="checkout-title">Order Summary</h3>
+                <h3 id='checkout-title'>Order Summary</h3>
                 <div className='order-check'>
                     <ul>
                         {shoppingCart.map(item => (
@@ -209,7 +209,7 @@ const CheckoutModal = ({ onClose, shoppingCart, totalAmountCalculationFunction }
             <section className='pay-section' ref={contactRef}>
                 <h3>Contact</h3>
                 <div>
-                    {errors.name && <p className="field-error">{errors.name}</p>}
+                    {errors.name && <p className='field-error'>{errors.name}</p>}
                     <label htmlFor='name'>Name</label>
                     <input 
                         type='text' 
@@ -218,7 +218,7 @@ const CheckoutModal = ({ onClose, shoppingCart, totalAmountCalculationFunction }
                         onChange={handleChange}
                     />
 
-                    {errors.surname && <p className="field-error">{errors.surname}</p>}
+                    {errors.surname && <p className='field-error'>{errors.surname}</p>}
                     <label htmlFor='surname'>Surname</label>
                     <input 
                         type='text' 
@@ -227,7 +227,7 @@ const CheckoutModal = ({ onClose, shoppingCart, totalAmountCalculationFunction }
                         onChange={handleChange}
                     />
 
-                    {errors.email && <p className="field-error">{errors.email}</p>}
+                    {errors.email && <p className='field-error'>{errors.email}</p>}
                     <label htmlFor='email'>E-mail</label>
                     <input 
                         type='email' 
@@ -248,28 +248,28 @@ const CheckoutModal = ({ onClose, shoppingCart, totalAmountCalculationFunction }
             <section className='pay-section' ref={deliveryRef}>
                 <h3>Delivery</h3>
                 <div>
-                    {errors.street && <p className="field-error">{errors.street}</p>}
-                    <label htmlFor="street">Street and number</label>
+                    {errors.street && <p className='field-error'>{errors.street}</p>}
+                    <label htmlFor='street'>Street and number</label>
                     <input 
-                        type="text" 
+                        type='text' 
                         id='street' 
                         className='squircle-xl'
                         onChange={handleChange}
                     />
                    
-                    {errors.city && <p className="field-error">{errors.city}</p>}
-                    <label htmlFor="city">City</label>
+                    {errors.city && <p className='field-error'>{errors.city}</p>}
+                    <label htmlFor='city'>City</label>
                     <input 
-                        type="text" 
+                        type='text'
                         id='city' 
                         className='squircle-xl' 
                         onChange={handleChange}
                     />
 
-                    {errors.zipcode && <p className="field-error">{errors.zipcode}</p>}
-                    <label htmlFor="zipcode">Zip-Code</label>
+                    {errors.zipcode && <p className='field-error'>{errors.zipcode}</p>}
+                    <label htmlFor='zipcode'>Zip-Code</label>
                     <input 
-                        type="text" 
+                        type='text' 
                         id='zipcode' 
                         className='squircle-xl' 
                         onChange={handleChange}
@@ -278,13 +278,13 @@ const CheckoutModal = ({ onClose, shoppingCart, totalAmountCalculationFunction }
             </section>
             <section className='pay-section' ref={paymentRef}>
                 <h3>Payment</h3>
-                {errors.agree && <p className="field-error">{errors.agree}</p>}
+                {errors.agree && <p className='field-error'>{errors.agree}</p>}
                 <div className='checkbox-row'>
                     <label htmlFor='agree'>
                         I agree to the e-shop's terms and conditions.
                     </label>
                     <input 
-                        type="checkbox" 
+                        type='checkbox' 
                         id='agree' 
                         checked={agreed}
                         onChange={(e) => setAgreed(e.target.checked)}

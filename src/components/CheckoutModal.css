@@ -126,7 +126,7 @@
     text-transform: uppercase;
 }
 
-.pay-section input:not([type="checkbox"]) {
+.pay-section input:not([type='checkbox']) {
     width: 100%;
     appearance: none;
     outline: none;
@@ -141,13 +141,13 @@
         box-shadow var(--transition-fast);
 }
 
-.pay-section input:not([type="checkbox"]):focus-visible {
+.pay-section input:not([type='checkbox']):focus-visible {
     outline: none;
     border-color: var(--border-accent);
     box-shadow: 0 0 0 2px var(--focus-ring);
 }
 
-.pay-section input:not([type="checkbox"]):focus-visible {
+.pay-section input:not([type='checkbox']):focus-visible {
     outline: none;
     border-color: var(--border-accent);
     box-shadow: 0 0 0 2px var(--focus-ring);
@@ -171,7 +171,7 @@
     order: 2;
 }
 
-.checkbox-row input[type="checkbox"] {
+.checkbox-row input[type='checkbox'] {
     order: 1;
     flex: 0 0 auto;
     width: 1rem;

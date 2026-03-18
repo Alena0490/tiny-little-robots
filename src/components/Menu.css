@@ -22,7 +22,7 @@
 }
 
 .navigation::after {
-    content: "";
+    content: '';
     border-block-start: 3px solid transparent;
     border-block-end: 3px solid transparent;
 

@@ -68,7 +68,7 @@
         0 0 0 2px var(--focus-ring);
 }
 
-.form input[type="email"]:focus:invalid {
+.form input[type='email']:focus:invalid {
     border-color: var(--error-border);
     background: var(--error-bg);
 }

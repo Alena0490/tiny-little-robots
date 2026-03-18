@@ -4,9 +4,9 @@ import { Canvas, useThree } from '@react-three/fiber'
 import type { GLTF } from 'three-stdlib'
 import { useGLTF, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
-import modelPath from "../../models/robotic_cat-v1.glb"
-import "../Model.css"
-import "../ShopItem.css"
+import modelPath from '../../models/robotic_cat-v1.glb'
+import '../Model.css'
+import '../ShopItem.css'
 
 type GLTFResult = GLTF & {
     scene: THREE.Group
@@ -30,14 +30,14 @@ const FixedLights = () => {
             <directionalLight
                 ref={lightRef}
                 intensity={1.8}
-                color="#ffffff"
+                color='#ffffff'
                 castShadow
                 shadow-mapSize={[1024, 1024]}
                 shadow-radius={50}
                 shadow-camera-far={50}
                 shadow-camera-near={0.1}
             />
-            <directionalLight position={[-5, 2, -5]} intensity={0.25} color="#ff69b4" />
+            <directionalLight position={[-5, 2, -5]} intensity={0.25} color='#ff69b4' />
         </>
     )
 }
@@ -110,7 +110,7 @@ const CatModel = ({ className }: CatModelProps) => {
             }}
             onMouseLeave={() => setCanvasActive(false)}
         >
-            {canvasActive && <p className="model-hint">Scroll to zoom</p>}
+            {canvasActive && <p className='model-hint'>Scroll to zoom</p>}
             {visible && (
                 <Canvas
                     className={`shop-model ${className ?? ''}`}

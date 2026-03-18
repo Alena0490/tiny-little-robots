@@ -1,8 +1,8 @@
-import ShopSearch from "./ShopSearch"
-import ShoppingCart from "./ShoppingCart"
-import ShopItem from "./ShopItem"
-import "./Shop.css"
-import shopItems from "../data/shopItems"
+import ShopSearch from './ShopSearch'
+import ShoppingCart from './ShoppingCart'
+import ShopItem from './ShopItem'
+import './Shop.css'
+import shopItems from '../data/shopItems'
 
 type CartItem = {
     product: typeof shopItems[0]
@@ -23,13 +23,13 @@ interface ModalProps {
 const Shop = ({ searchProduct, handleProductSearch, setIsModalOpen, filterProductFunction, handleCart, shoppingCart, removeItem, totalAmountCalculationFunction, setShoppingCart}:ModalProps) => {
 
     return (
-        <section id="shop">
+        <section id='shop'>
             <h2>Buy a Robot</h2>
             <ShopSearch 
                 searchProduct={searchProduct} 
                 handleProductSearch={handleProductSearch}
             />
-            <article className="shop">
+            <article className='shop'>
                 <ShopItem
                     filterProductFunction={filterProductFunction}
                     handleCart={handleCart}

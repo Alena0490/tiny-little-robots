@@ -29,7 +29,7 @@ const ShoppingCart = ({
         <div className={`cart squircle-xl ${shoppingCart.length > 0 ? 'active' : ''} ${className ?? ''}`}>
             <h3>My Cart</h3>
             {shoppingCart.length === 0 ? (
-                <p className="empty-cart">Your cart is empty.</p>
+                <p className='empty-cart'>Your cart is empty.</p>
             ) : (
                 <div>
                     <ul>
@@ -88,14 +88,14 @@ const ShoppingCart = ({
                             </li>
                         ))}
                     </ul>
-                    <div className="checkout">
-                        		<div className="checkout-total">
-                                    <p className="total">Total Amount: 
+                    <div className='checkout'>
+                        		<div className='checkout-total'>
+                                    <p className='total'>Total Amount: 
                                        ${totalAmountCalculationFunction()}
                                     </p>
                                 </div>
                         <button
-                            className="checkout-button squircle-xl"
+                            className='checkout-button squircle-xl'
                             disabled={shoppingCart.length === 0 || 
                             totalAmountCalculationFunction() === 0}
                             onClick={() => setIsModalOpen(true)}

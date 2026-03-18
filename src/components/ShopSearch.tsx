@@ -1,4 +1,4 @@
-import "./ShopSearch.css"
+import './ShopSearch.css'
 
 interface ShopSearchProps {
     searchProduct: string
@@ -7,11 +7,11 @@ interface ShopSearchProps {
 
 const ShopSearch = ({searchProduct, handleProductSearch}: ShopSearchProps) => {
   return (
-    <header className="shop-header squircle-xl">
-        <h3 className="shop-search-heading">Shopping Cart</h3>
+    <header className='shop-header squircle-xl'>
+        <h3 className='shop-search-heading'>Shopping Cart</h3>
         <input
-                type="text"
-                placeholder="Search for our Products..."
+                type='text'
+                placeholder='Search for our Products...'
                 value={searchProduct}
                 onChange={handleProductSearch}
             />

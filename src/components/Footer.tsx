@@ -1,44 +1,44 @@
-import "./Footer.css"
-import { FaLinkedin,FaGithubSquare, FaFacebook } from "react-icons/fa";
+import './Footer.css'
+import { FaLinkedin,FaGithubSquare, FaFacebook } from 'react-icons/fa';
 
 const Footer = () => {
   return (
     <footer>
-      <div className="socials">
+      <div className='socials'>
         <a 
-          href="https://www.linkedin.com/in/alena-pumprova/" 
-          target="_blank"
-          rel="noopener"
+          href='https://www.linkedin.com/in/alena-pumprova/' 
+          target='_blank'
+          rel='noopener'
         >
-          <span className="social">
-            <FaLinkedin className="linkedin"/>
+          <span className='social'>
+            <FaLinkedin className='linkedin'/>
             LinkedIn
           </span>
         </a>
 
         <a 
-          href="https://www.facebook.com/alena.pumprova/" 
-          target="_blank"
-          rel="noopener"
+          href='https://www.facebook.com/alena.pumprova/' 
+          target='_blank'
+          rel='noopener'
         >
-          <span className="social">
+          <span className='social'>
             <FaFacebook/>
             Facebook
           </span>
         </a>
 
         <a 
-          href="https://github.com/Alena0490" 
-          target="_blank"
-          rel="noopener"
+          href='https://github.com/Alena0490' 
+          target='_blank'
+          rel='noopener'
         >
-          <span className="social">
+          <span className='social'>
             <FaGithubSquare />
             GitHub
           </span>
         </a>
       </div>
-      <p className="copyright">Copyright Alena Pumprová 2026</p>
+      <p className='copyright'>Copyright Alena Pumprová 2026</p>
     </footer>
   )
 }

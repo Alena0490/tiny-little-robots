@@ -4,15 +4,15 @@ import { Canvas, useThree } from '@react-three/fiber'
 import type { GLTF } from 'three-stdlib'
 import { useGLTF, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
-import modelPath from '../../models/robo-dog-v2.glb'
-import '../Model.css'
-import '../ShopItem.css'
+import modelPath from "../../models/robotic_cat.glb"
+import "../Model.css"
+import "../ShopItem.css"
 
 type GLTFResult = GLTF & {
     scene: THREE.Group
 }
 
-type DogModalProps = {
+type CatModelHomepageProps = {
     className?: string
 }
 
@@ -26,18 +26,18 @@ const FixedLights = () => {
 
     return (
         <>
-            <ambientLight intensity={0.25} />
-            <directionalLight 
-                ref={lightRef} 
-                intensity={2.2} 
-                color='#ffffff'
-                castShadow 
-                shadow-mapSize={[1024, 1024]} 
+            <ambientLight intensity={0.9} />
+            <directionalLight
+                ref={lightRef}
+                intensity={4}
+                color="#ffffff"
+                castShadow
+                shadow-mapSize={[1024, 1024]}
                 shadow-radius={50}
                 shadow-camera-far={50}
                 shadow-camera-near={0.1}
             />
-            <directionalLight position={[-5, 2, -5]} intensity={0.7} color='#8888ff' />
+            <directionalLight position={[-5, 2, -5]} intensity={0.7} color="#8888ff" />
         </>
     )
 }
@@ -49,11 +49,27 @@ const Scene = () => {
     useEffect(() => {
         gltf.scene.traverse((child: THREE.Object3D) => {
             if (child instanceof THREE.Mesh) {
-                const mat = child.material as THREE.MeshPhysicalMaterial
-                if (mat.name === 'material_0') {
-                    mat.roughness = 0.2
-                    mat.metalness = 0.2
-                    mat.needsUpdate = true
+                child.castShadow = true
+                child.receiveShadow = true
+                const mat = child.material as THREE.MeshStandardMaterial
+                if (mat.name === 'plastic') {
+                    mat.color.set('#c2d2d2')
+                    mat.roughness = 0.4
+                    mat.metalness = 0.1
+                }
+                if (mat.name === 'plastic.001') {
+                    mat.color.set('#0B2918')
+                    mat.roughness = 0.8
+                }
+                if (mat.name === 'Metal') {
+                    mat.color.set('#b0c0c0')
+                    mat.metalness = 0.5
+                    mat.roughness = 0.15
+                }
+                if (mat.name === 'eyes') {
+                    mat.color.set('#222')
+                    mat.emissive.set('#331523')
+                    mat.emissiveIntensity = 0.4
                 }
             }
         })
@@ -64,13 +80,13 @@ const Scene = () => {
     })
 
     return (
-        <group ref={ref} scale={2.72} position={[0, 1, 0]}>
+        <group ref={ref} scale={0.022} position={[0, -1, 0]}>
             <primitive object={gltf.scene} />
         </group>
     )
 }
 
-const DogModal = ({ className }: DogModalProps) => {
+const CatModelHomepage = ({ className }: CatModelHomepageProps) => {
     const [canvasActive, setCanvasActive] = useState(false)
     const [visible, setVisible] = useState(false)
     const wrapRef = useRef<HTMLDivElement>(null)
@@ -93,9 +109,7 @@ const DogModal = ({ className }: DogModalProps) => {
             }}
             onMouseLeave={() => setCanvasActive(false)}
         >
-            {canvasActive && (
-                <p className='model-hint'>Scroll to zoom</p>
-            )}
+            {canvasActive && <p className="model-hint">Scroll to zoom</p>}
             {visible && (
                 <Canvas
                     className={`shop-model ${className ?? ''}`}
@@ -110,12 +124,10 @@ const DogModal = ({ className }: DogModalProps) => {
                 >
                     <FixedLights />
                     <Scene />
-
                     <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1, 0]} receiveShadow>
                         <planeGeometry args={[20, 20]} />
                         <shadowMaterial opacity={0.4} />
                     </mesh>
-
                     <OrbitControls enableZoom={canvasActive} />
                 </Canvas>
             )}
@@ -123,4 +135,4 @@ const DogModal = ({ className }: DogModalProps) => {
     )
 }
 
-export default DogModal
+export default CatModelHomepage
