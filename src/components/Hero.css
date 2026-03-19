@@ -26,6 +26,7 @@ section.hero {
 }
 
 .secondary {
+    margin-top: var(--spacing-xs);
     text-align: center;
     color: var(--text-faint);
 }
@@ -40,23 +41,13 @@ section.hero {
 }
 
 .cta button {
-  color: var(--text-color);
   font-size: var(--text-base);
-  font-family: inherit;
   margin-top: 0.5rem;
   padding: 0.75rem 1.25rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  border: 2px solid hsl(0 0 100% / 0.25);
-  background: var(--button);
-  backdrop-filter: blur(10px);
-  transition: background-color var(--transition-normal); 
-  cursor: pointer;
   z-index: 0;
 }
 
 .cta button:is(:hover, :focus) { 
-    background: var(--main-color);
     box-shadow: 0 0 32px oklch(from var(--main-color) l c h / .5);
 }
 

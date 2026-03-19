@@ -139,7 +139,6 @@
 }
 
 .cart-button, .load-button {
-    border: 1px solid var(--border-accent);
     border-radius: var(--radius-lg);
     corner-shape: squircle;
         font: inherit;
@@ -162,9 +161,6 @@
     left: 50%;
     bottom: 1rem;
     transform: translateX(-50%);
-    background:
-        linear-gradient(180deg, oklch(from var(--main-color) calc(l - .02) c h / 0.95), oklch(from var(--main-color) calc(l - .12) c h / 0.95));
-    color: white;
   z-index: 2;
 }
 

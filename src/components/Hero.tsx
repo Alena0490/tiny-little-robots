@@ -17,8 +17,8 @@ const Hero = ({ scrollTo }: ScrollProps) => {
         </div>
         <Model />
         <div className='cta'>
-            <button className='squircle-xl'>Book</button>
-            <button className='squircle-xl' onClick={() => scrollTo('shop')}>Products</button>
+            <button className='squircle-xl primary-button' onClick={() => scrollTo('shop')}>Get a Robot</button>
+            <button className='squircle-xl secondary-button' onClick={() => scrollTo('contacts')}>Contact Us</button>
         </div>
         <button 
             className='scroll-btn' 

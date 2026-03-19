@@ -4,7 +4,7 @@ import { Canvas } from '@react-three/fiber'
 import type { GLTF } from 'three-stdlib'
 import { useGLTF, OrbitControls } from '@react-three/drei'
 import { Mesh, MeshStandardMaterial, DirectionalLight, Group, Object3D, PCFShadowMap } from 'three'
-import modelPath from '../../models/robotic_spider-v2.glb'
+import modelPath from '../../models/robotic_spider-v1.glb'
 import '../Model.css'
 import '../ShopItem.css'
 
@@ -45,6 +45,15 @@ const FixedLights = () => {
 const Scene = () => {
     const ref = useRef<Group>(null!)
     const gltf = useGLTF(modelPath) as GLTFResult
+
+    useEffect(() => {
+    gltf.scene.traverse((child: Object3D) => {
+        if ((child as Mesh).isMesh) {
+            const mat = (child as Mesh).material as MeshStandardMaterial
+            console.log('material name:', mat.name) // 👈
+        }
+    })
+}, [gltf])
 
     useEffect(() => {
         gltf.scene.traverse((child: Object3D) => {

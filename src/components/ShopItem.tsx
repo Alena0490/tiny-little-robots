@@ -30,7 +30,7 @@ const ShopItem = ({ filterProductFunction, handleCart }: ShopItemProps) => {
                             </Suspense>
                             <p className="price">{product.price} USD</p>
                             <button 
-                                className='cart-button'
+                                className='cart-button primary-button'
                                 onClick={() => handleCart(product)}
                                 >
                                     Add to cart
@@ -43,7 +43,7 @@ const ShopItem = ({ filterProductFunction, handleCart }: ShopItemProps) => {
             {visibleCount < filterProductFunction.length && (
                 <button 
                     onClick={() => setVisibleCount(prev => prev + 3)}
-                    className='load-button'
+                    className='load-button secondary-button'
                 >
                     Show more
                 </button>
