@@ -6,7 +6,7 @@ A demo e-shop built with React, TypeScript and Vite. Browse and "buy" unique rob
 
 ---
 
-![Tiny Little Robots mockup](./screen-hero.png)
+![Tiny Little Robots mockup](./public/screen-hero.png)
 
 ## ✨ Features
 
