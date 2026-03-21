@@ -10,6 +10,7 @@ const Shop = lazy(() => import('./components/Shop'))
 const Form = lazy(() => import('./components/ContactForm'))
 import Footer from './components/Footer';
 import CheckoutModal from './components/CheckoutModal'
+import Cookies from './components/Cookies'
 import './App.css'
 
 const App = () => {
@@ -121,6 +122,7 @@ const App = () => {
           </main>
         </Parallax>
       <Footer/>
+      <Cookies/>
     </div>
   )
 }
