@@ -8,6 +8,9 @@ A demo e-shop built with React, TypeScript and Vite. Browse and "buy" unique rob
 
 ![Tiny Little Robots mockup](./public/screen-hero.png)
 
+About
+![Tiny Little Robots mockup](./public/about-screen.png)
+
 ## ✨ Features
 
 - **3D product models** — interactive, rotatable via React Three Fiber
@@ -22,6 +25,14 @@ A demo e-shop built with React, TypeScript and Vite. Browse and "buy" unique rob
 - **Fully responsive**
 
 ---
+
+Shop
+![Tiny Little Robots mockup](./public/shop-screen.png)
+![Tiny Little Robots mockup](./public/shopping-cart.png)
+![Tiny Little Robots mockup](./public/order-summary.png)
+
+Contacts
+![Tiny Little Robots mockup](./public/mobile-contact-screen.png)
 
 ## 🛠️ Tech Stack
 
@@ -95,6 +106,9 @@ npm run build
 
 This project uses [EmailJS](https://www.emailjs.com/) for both the contact form and order confirmations. To run it with your own account, replace the following values in `ContactForm.tsx` and `CheckoutModal.tsx`:
 
+Order confirmation
+![Tiny Little Robots mockup](./public/order-confirmation.png)
+
 ```ts
 emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', ..., 'YOUR_PUBLIC_KEY')
 ```
@@ -110,6 +124,8 @@ This site uses essential cookies only — required for the contact form and demo
 ## 🎨 3D Models
 
 All 3D models are sourced from [Sketchfab](https://sketchfab.com). Credits are linked in `shopItems.ts`.
+
+![Tiny Little Robots mockup](./public/model-zoomed2.png)
 
 ---
 
