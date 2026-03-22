@@ -1,28 +1,27 @@
-import { useFrame, useThree } from '@react-three/fiber'
-import { useState, useRef, useEffect } from 'react'
-import { Canvas } from '@react-three/fiber'
-import type { GLTF } from 'three-stdlib'
-import { useGLTF, OrbitControls } from '@react-three/drei'
-import { Mesh, MeshPhysicalMaterial, DirectionalLight, Group, Object3D, PCFShadowMap } from 'three'
-import modelPath from '../../models/robo-dog-v2.glb'
-import '../Model.css'
-import '../ShopItem.css'
+import { useFrame, useThree, Canvas } from '@react-three/fiber';
+import { useState, useRef, useEffect } from 'react';
+import type { GLTF } from 'three-stdlib';
+import { useGLTF, OrbitControls } from '@react-three/drei';
+import { Mesh, MeshPhysicalMaterial, DirectionalLight, Group, Object3D, PCFShadowMap } from 'three';
+import modelPath from '../../models/robo-dog-v2.glb';
+import '../Model.css';
+import '../ShopItem.css';
 
 type GLTFResult = GLTF & {
-    scene: Group
-}
+    scene: Group;
+};
 
-type DogModalProps = {
-    className?: string
-}
+type DogModelProps = {
+    className?: string;
+};
 
 const FixedLights = () => {
-    const { camera } = useThree()
-    const lightRef = useRef<DirectionalLight>(null!)
+    const { camera } = useThree();
+    const lightRef = useRef<DirectionalLight>(null!);
 
     useFrame(() => {
-        lightRef.current.position.copy(camera.position)
-    })
+        lightRef.current.position.copy(camera.position);
+    });
 
     return (
         <>
@@ -39,57 +38,57 @@ const FixedLights = () => {
             />
             <directionalLight position={[-5, 2, -5]} intensity={0.7} color='#8888ff' />
         </>
-    )
-}
+    );
+};
 
 const Scene = () => {
-    const ref = useRef<Group>(null!)
-    const gltf = useGLTF(modelPath) as GLTFResult
+    const ref = useRef<Group>(null!);
+    const gltf = useGLTF(modelPath) as GLTFResult;
 
     useEffect(() => {
         gltf.scene.traverse((child: Object3D) => {
             if (child instanceof Mesh) {
-                const mat = child.material as MeshPhysicalMaterial
+                const mat = child.material as MeshPhysicalMaterial;
                 if (mat.name === 'material_0') {
-                    mat.roughness = 0.2
-                    mat.metalness = 0.2
-                    mat.needsUpdate = true
+                    mat.roughness = 0.2;
+                    mat.metalness = 0.2;
+                    mat.needsUpdate = true;
                 }
             }
-        })
-    }, [gltf])
+        });
+    }, [gltf]);
 
     useFrame(() => {
-        ref.current.rotation.y += 0.005
-    })
+        ref.current.rotation.y += 0.005;
+    });
 
     return (
         <group ref={ref} scale={2.72} position={[0, 1, 0]}>
             <primitive object={gltf.scene} />
         </group>
-    )
-}
+    );
+};
 
-const DogModal = ({ className }: DogModalProps) => {
-    const [canvasActive, setCanvasActive] = useState(false)
-    const [visible, setVisible] = useState(false)
-    const wrapRef = useRef<HTMLDivElement>(null)
+const DogModel = ({ className }: DogModelProps) => {
+    const [canvasActive, setCanvasActive] = useState(false);
+    const [visible, setVisible] = useState(false);
+    const wrapRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver(([entry]) => {
-            if (entry.isIntersecting) setVisible(true)
-        }, { threshold: 0.1 })
-        if (wrapRef.current) observer.observe(wrapRef.current)
-        return () => observer.disconnect()
-    }, [])
+            if (entry.isIntersecting) setVisible(true);
+        }, { threshold: 0.1 });
+        if (wrapRef.current) observer.observe(wrapRef.current);
+        return () => observer.disconnect();
+    }, []);
 
     return (
         <div
             ref={wrapRef}
             className={`model-wrap ${canvasActive ? 'active' : ''}`}
             onClick={() => {
-                setCanvasActive(true)
-                setTimeout(() => setCanvasActive(false), 5000)
+                setCanvasActive(true);
+                setTimeout(() => setCanvasActive(false), 5000);
             }}
             onMouseLeave={() => setCanvasActive(false)}
         >
@@ -103,8 +102,8 @@ const DogModal = ({ className }: DogModalProps) => {
                     id='shop-model'
                     shadows
                     onCreated={({ gl }) => {
-                        gl.shadowMap.enabled = true
-                        gl.shadowMap.type = PCFShadowMap
+                        gl.shadowMap.enabled = true;
+                        gl.shadowMap.type = PCFShadowMap;
                     }}
                     camera={{ position: [0, 0, 11] }}
                 >
@@ -118,7 +117,7 @@ const DogModal = ({ className }: DogModalProps) => {
                 </Canvas>
             )}
         </div>
-    )
-}
+    );
+};
 
-export default DogModal
+export default DogModel;

@@ -1,15 +1,23 @@
+/* =====================
+   HERO SECTION
+===================== */
+
 section.hero {
     height: 90vh;
     min-height: unset;
     max-width: unset;
     align-items: center;
     justify-content: center;
-    margin-bottom: 4rem;
-    padding: 0 0;
+    margin-bottom: var(--spacing-xl);
+    padding: 0;
     border-block-end: 3px solid var(--border-light);
     background-color: var(--background-elevated-tr);
     backdrop-filter: blur(3px);
 }
+
+/* =====================
+   HEADINGS
+===================== */
 
 .hero-headings {
     width: 100%;
@@ -25,31 +33,40 @@ section.hero {
     text-align: center;
 }
 
+/* Hint to interact with the 3D model */
 .secondary {
     margin-top: var(--spacing-xs);
     text-align: center;
     color: var(--text-faint);
 }
 
+/* =====================
+   CALL TO ACTION
+===================== */
+
 .cta {
-  position: absolute;
-  top: calc(100vh - 15rem);
-  display: flex;
-  justify-content: center;
-  margin-block: 1rem;
-  gap: 1rem;
+    position: absolute;
+    top: calc(100vh - 15rem);
+    display: flex;
+    justify-content: center;
+    margin-block: 1rem;
+    gap: 1rem;
 }
 
 .cta button {
-  font-size: var(--text-base);
-  margin-top: 0.5rem;
-  padding: 0.75rem 1.25rem;
-  z-index: 0;
+    font-size: var(--text-base);
+    margin-top: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    z-index: 0;
 }
 
-.cta button:is(:hover, :focus) { 
-    box-shadow: 0 0 32px oklch(from var(--main-color) l c h / .5);
+.cta button:is(:hover, :focus) {
+    box-shadow: 0 0 32px oklch(from var(--main-color) l c h / 0.5);
 }
+
+/* =====================
+   SCROLL INDICATOR
+===================== */
 
 .arrow {
     position: absolute;
@@ -57,7 +74,7 @@ section.hero {
     color: var(--text-muted);
     font-size: clamp(2.625rem, 0.9177rem + 8.5366vw, 4.375rem);
     cursor: pointer;
-    transition: tranform var(--transition-slow);
+    transition: transform var(--transition-slow);
 }
 
 .arrow:hover {

@@ -1,25 +1,36 @@
+/* =====================
+   LAYOUT
+===================== */
+
 .content {
   position: relative;
 }
 
 main {
   position: relative;
-  top: 0;
   flex: 1;
   padding-bottom: 5rem;
 }
+
+/* =====================
+   PARALLAX
+===================== */
 
 .parallax-layer {
   position: relative;
   padding: 2rem 0;
   z-index: 0;
-  isolation: auto;
 }
 
+/* Ensure content sits above parallax background */
 .parallax-layer > * {
   position: relative;
   z-index: 1;
 }
+
+/* =====================
+   SECTIONS
+===================== */
 
 section {
   position: relative;
@@ -30,13 +41,8 @@ section {
   flex-direction: column;
 }
 
+/* Placeholder height while Shop is loading */
 .shop-fallback {
   min-height: 100vh;
   background: none;
-}
-
-@media (max-width: 950px) {
-  section:not(.hero) {
-    margin: 1rem 2rem 2rem;
-  }
 }

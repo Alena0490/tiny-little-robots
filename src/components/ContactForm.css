@@ -1,6 +1,9 @@
+/* =====================
+   FORM WRAPPER
+===================== */
 
-.form, 
-.form input, 
+.form,
+.form input,
 .form textarea {
     border: 1px solid var(--border-color);
 }
@@ -14,8 +17,8 @@
     gap: var(--spacing-sm);
     margin: 1rem auto 2rem;
     padding: var(--spacing-lg);
-    backdrop-filter: blur(var(--surface-blur));;
-        background:
+    backdrop-filter: blur(var(--surface-blur));
+    background:
         linear-gradient(
             180deg,
             hsl(0 0% 100% / 0.04),
@@ -24,7 +27,11 @@
     box-shadow: var(--shadow-soft);
 }
 
-.form input, 
+/* =====================
+   INPUTS & TEXTAREA
+===================== */
+
+.form input,
 .form textarea {
     width: 100%;
     appearance: none;
@@ -39,7 +46,7 @@
     transition: background-color var(--transition-slow), border var(--transition-slow);
 }
 
-.form input:focus, 
+.form input:focus,
 .form textarea:focus {
     border: 1px solid var(--text-muted);
     background-color: var(--background-elevated);
@@ -47,10 +54,14 @@
 
 .form input:focus-visible,
 .form textarea:focus-visible {
-  outline: none;
-  border-color: var(--border-accent);
-  box-shadow: 0 0 0 2px var(--focus-ring);
+    outline: none;
+    border-color: var(--border-accent);
+    box-shadow: 0 0 0 2px var(--focus-ring);
 }
+
+/* =====================
+   AUTOFILL STYLES
+===================== */
 
 .form input:-webkit-autofill,
 .form textarea:-webkit-autofill {
@@ -68,10 +79,15 @@
         0 0 0 2px var(--focus-ring);
 }
 
+/* Highlight invalid email after interaction */
 .form input[type='email']:focus:invalid {
     border-color: var(--error-border);
     background: var(--error-bg);
 }
+
+/* =====================
+   LABELS
+===================== */
 
 .form label {
     width: 100%;
@@ -82,6 +98,11 @@
     text-align: left;
 }
 
+/* =====================
+   HONEYPOT
+===================== */
+
+/* Hidden field to catch bots — invisible to real users */
 .honeypot {
     position: absolute;
     opacity: 0;
@@ -90,24 +111,32 @@
     height: 0;
     width: 0;
     z-index: -1;
-    pointer-events: none; 
+    pointer-events: none;
 }
+
+/* =====================
+   SUBMIT BUTTON
+===================== */
 
 .form input.form-submit {
     font-size: var(--text-base);
     margin-top: 0.5rem;
     font-weight: 400;
     text-transform: uppercase;
-    border: 2px solid hsl(0 0 100% / 0.25);
+    border: 2px solid hsl(0 0% 100% / 0.25);
     background: var(--button);
-    transition: background-color var(--transition-normal); 
+    transition: background-color var(--transition-normal);
     cursor: pointer;
 }
 
-.form input.form-submit:is(:hover, :focus) { 
+.form input.form-submit:is(:hover, :focus) {
     background: var(--main-color);
-    box-shadow: 0 0 32px oklch(from var(--main-color) l c h / .5);
+    box-shadow: 0 0 32px oklch(from var(--main-color) l c h / 0.5);
 }
+
+/* =====================
+   RESULT MESSAGE
+===================== */
 
 .form-result {
     width: 100%;

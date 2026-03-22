@@ -5,8 +5,8 @@
   ========================= */
 
   --main-color: #ff1493;
-  --main-color-soft: oklch(from var(--main-color) l c h / .2);
-  --main-color-strong: oklch(from var(--main-color) calc(l - .15) c h);
+  --main-color-soft: oklch(from var(--main-color) l c h / 0.2);
+  --main-color-strong: oklch(from var(--main-color) calc(l - 0.15) c h);
 
   --text-color: #f5f5f5;
   --text-muted: #bbb;
@@ -20,20 +20,23 @@
   --background-elevated-3: #2a2a2a;
 
   --border-color: color-mix(in srgb, var(--text-color) 15%, transparent);
-  --border-light: hsl(0 0% 100% / .2);
-  --border-light2:  hsl(0 0 100% / 0.25);
-  --button: hsla(0, 0%, 16%, 0.7);
+  --border-light: hsl(0 0% 100% / 0.2);
+  --border-light2: hsl(0 0% 100% / 0.25);
+  --button: hsl(0 0% 16% / 0.7);
 
-  --glow: 0 0 32px oklch(from var(--main-color) l c h / .5);
+  --glow: 0 0 32px oklch(from var(--main-color) l c h / 0.5);
 
-  /* FORM STATES  */
+  /* =========================
+     FORM STATES
+  ========================= */
+
   --border-strong: color-mix(in srgb, var(--text-color) 28%, transparent);
   --border-accent: color-mix(in srgb, var(--main-color) 45%, white 12%);
   --main-color-light: #ff69b4;
   --main-color-lighter: #ffb3d9;
-  --main-color-glow-light: oklch(from var(--main-color-light) l c h / .4);
+  --main-color-glow-light: oklch(from var(--main-color-light) l c h / 0.4);
 
-  --focus-ring: oklch(from var(--main-color) l c h / .28);
+  --focus-ring: oklch(from var(--main-color) l c h / 0.28);
 
   --success-color: #63d297;
   --success-bg: rgb(99 210 151 / 0.12);
@@ -43,7 +46,7 @@
   --error-bg: rgb(255 111 145 / 0.12);
   --error-border: rgb(255 111 145 / 0.52);
 
-  --glow-soft: 0 0 18px oklch(from var(--main-color) l c h / .28);
+  --glow-soft: 0 0 18px oklch(from var(--main-color) l c h / 0.28);
   --shadow-soft: 0 10px 30px rgb(0 0 0 / 0.22);
 
   /* =========================
@@ -70,15 +73,15 @@
   ========================= */
 
   --font-main: system-ui, sans-serif;
-  --text-xs: 0.75rem;    /* poznámky, meta */
-  --text-sm: 0.875rem;   /* drobný text */
+  --text-xs: 0.75rem;    /* notes, metadata */
+  --text-sm: 0.875rem;   /* small text */
   --text-base: 1rem;
   --text-h3: clamp(1.29rem, calc(1.2rem + 0.46vw), 1.51rem);
   --text-h2: clamp(1.4rem, calc(1.28rem + 0.69vw), 1.73rem);
   --text-h1: clamp(1.66rem, calc(1.43rem + 1.29vw), 2.28rem);
 
   /* =========================
-    SURFACES
+     SURFACES
   ========================= */
 
   --surface-blur: 10px;
@@ -95,21 +98,21 @@
   --surface-bg-panel: var(--background-elevated-tr);
 
   /* =========================
-    INTERACTIVE ELEMENTS
+     INTERACTIVE ELEMENTS
   ========================= */
 
-  --interactive-bg: hsla(0, 0%, 16%, 0.7);
-  --interactive-border: 2px solid hsl(0 0 100% / 0.25);
+  --interactive-bg: hsl(0 0% 16% / 0.7);
+  --interactive-border: 2px solid hsl(0 0% 100% / 0.25);
   --interactive-padding-y: 0.75rem;
   --interactive-padding-x: 1.25rem;
   --interactive-radius: 2rem;
   --interactive-gap: 0.5rem;
 
   --interactive-hover-bg: var(--main-color);
-  --interactive-hover-shadow: 0 0 32px oklch(from var(--main-color) l c h / .5);
+  --interactive-hover-shadow: 0 0 32px oklch(from var(--main-color) l c h / 0.5);
 
   /* =========================
-    COMMON LAYOUT
+     COMMON LAYOUT
   ========================= */
 
   --section-padding: 2rem;
@@ -117,7 +120,7 @@
   --panel-gap: 1rem;
 
   /* =========================
-    ICONS
+     ICONS
   ========================= */
 
   --icon-size-sm: 1rem;
@@ -168,7 +171,7 @@ body {
   font-style: normal;
 }
 
-header{
+header {
   z-index: 0;
 }
 
@@ -202,8 +205,8 @@ p {
 }
 
 .squircle-xl {
-    border-radius: var(--radius-xl);
-    corner-shape: squircle;
+  border-radius: var(--radius-xl);
+  corner-shape: squircle;
 }
 
 .button {
@@ -213,7 +216,7 @@ p {
   font-weight: 700;
   text-transform: uppercase;
   cursor: pointer;
-  backdrop-filter: blur(--surface-blur);
+  backdrop-filter: blur(var(--surface-blur));
   transition:
     transform var(--transition-normal),
     background-color var(--transition-slow),
@@ -226,8 +229,8 @@ p {
   background:
     linear-gradient(
       180deg,
-      oklch(from var(--main-color) calc(l - .02) c h / 0.95),
-      oklch(from var(--main-color) calc(l - .12) c h / 0.95)
+      oklch(from var(--main-color) calc(l - 0.02) c h / 0.95),
+      oklch(from var(--main-color) calc(l - 0.12) c h / 0.95)
     );
   color: white;
   border: 2px solid var(--border-accent);
@@ -248,10 +251,9 @@ p {
 .secondary-button {
   color: var(--text-color);
   background: var(--button);
-  border: 2px solid hsl(0 0 100% / 0.25);
-  transition: background-color var(--transition-normal); 
+  border: 2px solid hsl(0 0% 100% / 0.25);
+  transition: background-color var(--transition-normal);
   z-index: 0;
-
 }
 
 .secondary-button:hover {

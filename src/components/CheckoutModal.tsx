@@ -1,33 +1,34 @@
-import { useState, useEffect, useRef } from 'react'
-import shopItems from '../data/shopItems'
-import emailjs from '@emailjs/browser'
-import './CheckoutModal.css'
+import { useState, useEffect, useRef } from 'react';
+import shopItems from '../data/shopItems';
+import emailjs from '@emailjs/browser';
+import './CheckoutModal.css';
 
 type CartItem = {
-    product: typeof shopItems[0]
-    quantity: number
-}
+    product: typeof shopItems[0];
+    quantity: number;
+};
 
 interface CheckoutModalProps {
-    onClose: () => void
-    shoppingCart: CartItem[]
-    totalAmountCalculationFunction: () => number
+    onClose: () => void;
+    shoppingCart: CartItem[];
+    totalAmountCalculationFunction: () => number;
 }
+
 interface GooglePayWindow extends Window {
     google: {
         payments: {
             api: {
                 PaymentsClient: new (config: { environment: string }) => {
-                    loadPaymentData: (request: object) => Promise<object>
-                }
-            }
-        }
-    }
+                    loadPaymentData: (request: object) => Promise<object>;
+                };
+            };
+        };
+    };
 }
 
 const CheckoutModal = ({ onClose, shoppingCart, totalAmountCalculationFunction }: CheckoutModalProps) => {
-    const [isClosing, setIsClosing] = useState(false)
-    const [agreed, setAgreed] = useState(false)
+    const [isClosing, setIsClosing] = useState(false);
+    const [agreed, setAgreed] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
         surname: '',
@@ -36,8 +37,7 @@ const CheckoutModal = ({ onClose, shoppingCart, totalAmountCalculationFunction }
         street: '',
         city: '',
         zipcode: ''
-    })
-
+    });
     const [errors, setErrors] = useState({
         name: '',
         surname: '',
@@ -46,60 +46,61 @@ const CheckoutModal = ({ onClose, shoppingCart, totalAmountCalculationFunction }
         city: '',
         zipcode: '',
         agree: ''
-    })
+    });
 
-    /***   CLOSE TEMPLATE */
+    // Refs for scrolling to the first section with an error
+    const contactRef = useRef<HTMLElement>(null);
+    const deliveryRef = useRef<HTMLElement>(null);
+    const paymentRef = useRef<HTMLElement>(null);
+
+    // CLOSE MODAL
     const handleClose = () => {
-        setIsClosing(true)
+        setIsClosing(true);
         setTimeout(() => {
-            setIsClosing(false)
-            onClose()
-        }, 400)
-    }
+            setIsClosing(false);
+            onClose();
+        }, 400);
+    };
 
-    /*** FORM HANDLING AND  VALIDATION */
+    // FORM HANDLING
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData(prev => ({ ...prev, [e.target.id]: e.target.value }))
-    }
+        setFormData(prev => ({ ...prev, [e.target.id]: e.target.value }));
+    };
 
-    /** Scroll to error */
-    const contactRef = useRef<HTMLElement>(null)
-    const deliveryRef = useRef<HTMLElement>(null)
-    const paymentRef = useRef<HTMLElement>(null)
-
-    /** Vallidate form */
+    // FORM VALIDATION
     const validate = () => {
-        const newErrors = { name: '', surname: '', email: '', street: '', city: '', zipcode: '', agree: '' }
-        let valid = true
+        const newErrors = { name: '', surname: '', email: '', street: '', city: '', zipcode: '', agree: '' };
+        let valid = true;
 
-        if (!formData.name) { newErrors.name = 'Name is required'; valid = false }
-        if (!formData.email) { newErrors.email = 'Email is required'; valid = false }
-        if (!formData.surname) { newErrors.surname = 'Surname is required'; valid = false }
-        if (!formData.street) { newErrors.street = 'Street is required'; valid = false }
-        if (!formData.city) { newErrors.city = 'City is required'; valid = false }
-        if (!formData.zipcode) { newErrors.zipcode = 'Zip code is required'; valid = false }
-        if (!agreed) { newErrors.agree = 'Please agree to the terms'; valid = false }
+        if (!formData.name) { newErrors.name = 'Name is required'; valid = false; }
+        if (!formData.email) { newErrors.email = 'Email is required'; valid = false; }
+        if (!formData.surname) { newErrors.surname = 'Surname is required'; valid = false; }
+        if (!formData.street) { newErrors.street = 'Street is required'; valid = false; }
+        if (!formData.city) { newErrors.city = 'City is required'; valid = false; }
+        if (!formData.zipcode) { newErrors.zipcode = 'Zip code is required'; valid = false; }
+        if (!agreed) { newErrors.agree = 'Please agree to the terms'; valid = false; }
 
-        /** Set errors */
-        setErrors(newErrors)
+        setErrors(newErrors);
+
+        // Scroll to the first section with an error
         if (!formData.name || !formData.surname || !formData.email) {
-            contactRef.current?.scrollIntoView({ behavior: 'smooth' })
+            contactRef.current?.scrollIntoView({ behavior: 'smooth' });
         } else if (!formData.street || !formData.city || !formData.zipcode) {
-            deliveryRef.current?.scrollIntoView({ behavior: 'smooth' })
+            deliveryRef.current?.scrollIntoView({ behavior: 'smooth' });
         } else if (!agreed) {
-            paymentRef.current?.scrollIntoView({ behavior: 'smooth' })
+            paymentRef.current?.scrollIntoView({ behavior: 'smooth' });
         }
-        return valid
-    }
 
+        return valid;
+    };
 
-    /*** ORDER CONFIRMATION */
+    // ORDER CONFIRMATION EMAIL
     const sendOrderConfirmation = async (email: string) => {
         await emailjs.send(
             'service_k1i50up',
             'template_g6r6tll',
             {
-                order_id: Math.random().toString(36).substr(2, 9).toUpperCase(),
+                order_id: Math.random().toString(36).substring(2, 11).toUpperCase(),
                 email: email,
                 orders: shoppingCart.map(item => ({
                     name: item.product.name,
@@ -114,27 +115,27 @@ const CheckoutModal = ({ onClose, shoppingCart, totalAmountCalculationFunction }
                 }
             },
             'Q5Ztx5pAS5z8gSFkK'
-        )
-    }
+        );
+    };
 
-    /*** PAYMENT */
-    /** GooglePay script preload */
-        useEffect(() => {
-            const script = document.createElement('script')
-            script.src = 'https://pay.google.com/gp/p/js/pay.js'
-            script.async = true
-            document.body.appendChild(script)
-            return () => {
-                document.body.removeChild(script)
-            }
-        }, [])
+    // Preload Google Pay script
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = 'https://pay.google.com/gp/p/js/pay.js';
+        script.async = true;
+        document.body.appendChild(script);
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, []);
 
+    // PAYMENT
     const handlePayment = async () => {
-        if (!validate()) return
+        if (!validate()) return;
 
         const paymentsClient = new (window as unknown as GooglePayWindow).google.payments.api.PaymentsClient({
             environment: 'TEST'
-        })
+        });
 
         const paymentRequest = {
             apiVersion: 2,
@@ -163,143 +164,115 @@ const CheckoutModal = ({ onClose, shoppingCart, totalAmountCalculationFunction }
                 currencyCode: 'USD',
                 countryCode: 'US'
             }
-        }
+        };
 
         try {
-            const paymentData = await paymentsClient.loadPaymentData(paymentRequest)
-            console.log(paymentData)
-            await sendOrderConfirmation(formData.email)
-            handleClose()
+            await paymentsClient.loadPaymentData(paymentRequest);
+            await sendOrderConfirmation(formData.email);
+            handleClose();
         } catch (err) {
-            console.log(err)
+            console.error('Payment failed:', err);
         }
-    }
-    
+    };
 
-  return (
-    <div className='modal-backdrop' onClick={handleClose}>
-        <div
-            className={`squircle-xl checkout-modal ${isClosing ? 'is-closing' : ''}`}
-            role='dialog'
-            aria-modal='true'
-            aria-labelledby='checkout-title'
-            onClick={(e) => e.stopPropagation()}
-        >
-            <button 
-                className='modal-close' 
-                onClick={handleClose}
-                aria-label='Close checkout modal'
-            >✕</button>
-            <section className='pay-section'>
-                <h3 id='checkout-title'>Order Summary</h3>
-                <div className='order-check'>
-                    <ul>
-                        {shoppingCart.map(item => (
-                            <li key={item.product.id}>
-                                <img src={item.product.img} alt={item.product.alt} />
-                                <span>{item.product.name}</span>
-                                <span>x{item.quantity}</span>
-                                <span>{item.product.price * item.quantity} USD</span>
-                            </li>
-                        ))}
-                    </ul>
-                    <p>Total: {totalAmountCalculationFunction()} USD</p>
-                </div>
-            </section>
-            <section className='pay-section' ref={contactRef}>
-                <h3>Contact</h3>
-                <div>
-                    {errors.name && <p className='field-error'>{errors.name}</p>}
-                    <label htmlFor='name'>Name</label>
-                    <input 
-                        type='text' 
-                        id='name' 
-                        className='squircle-xl' 
-                        onChange={handleChange}
-                    />
+    return (
+        <div className='modal-backdrop' onClick={handleClose}>
+            <div
+                className={`squircle-xl checkout-modal ${isClosing ? 'is-closing' : ''}`}
+                role='dialog'
+                aria-modal='true'
+                aria-labelledby='checkout-title'
+                onClick={(e) => e.stopPropagation()}
+            >
+                <button
+                    className='modal-close'
+                    onClick={handleClose}
+                    aria-label='Close checkout modal'
+                >✕</button>
 
-                    {errors.surname && <p className='field-error'>{errors.surname}</p>}
-                    <label htmlFor='surname'>Surname</label>
-                    <input 
-                        type='text' 
-                        id='surname' 
-                        className='squircle-xl' 
-                        onChange={handleChange}
-                    />
+                {/* Order summary */}
+                <section className='pay-section'>
+                    <h3 id='checkout-title'>Order Summary</h3>
+                    <div className='order-check'>
+                        <ul>
+                            {shoppingCart.map(item => (
+                                <li key={item.product.id}>
+                                    <img src={item.product.img} alt={item.product.alt} />
+                                    <span>{item.product.name}</span>
+                                    <span>x{item.quantity}</span>
+                                    <span>{item.product.price * item.quantity} USD</span>
+                                </li>
+                            ))}
+                        </ul>
+                        <p>Total: {totalAmountCalculationFunction()} USD</p>
+                    </div>
+                </section>
 
-                    {errors.email && <p className='field-error'>{errors.email}</p>}
-                    <label htmlFor='email'>E-mail</label>
-                    <input 
-                        type='email' 
-                        id='email' 
-                        className='squircle-xl' 
-                        onChange={handleChange}
-                    />
-                   
-                    <label htmlFor='phone'>Phone</label>
-                    <input 
-                        type='tel' 
-                        id='phone' 
-                        className='squircle-xl'
-                        onChange={handleChange} 
-                    />
-                </div>
-            </section>
-            <section className='pay-section' ref={deliveryRef}>
-                <h3>Delivery</h3>
-                <div>
-                    {errors.street && <p className='field-error'>{errors.street}</p>}
-                    <label htmlFor='street'>Street and number</label>
-                    <input 
-                        type='text' 
-                        id='street' 
-                        className='squircle-xl'
-                        onChange={handleChange}
-                    />
-                   
-                    {errors.city && <p className='field-error'>{errors.city}</p>}
-                    <label htmlFor='city'>City</label>
-                    <input 
-                        type='text'
-                        id='city' 
-                        className='squircle-xl' 
-                        onChange={handleChange}
-                    />
+                {/* Contact details */}
+                <section className='pay-section' ref={contactRef}>
+                    <h3>Contact</h3>
+                    <div>
+                        {errors.name && <p className='field-error'>{errors.name}</p>}
+                        <label htmlFor='name'>Name</label>
+                        <input type='text' id='name' className='squircle-xl' onChange={handleChange} />
 
-                    {errors.zipcode && <p className='field-error'>{errors.zipcode}</p>}
-                    <label htmlFor='zipcode'>Zip-Code</label>
-                    <input 
-                        type='text' 
-                        id='zipcode' 
-                        className='squircle-xl' 
-                        onChange={handleChange}
-                    />
-                </div>
-            </section>
-            <section className='pay-section' ref={paymentRef}>
-                <h3>Payment</h3>
-                {errors.agree && <p className='field-error'>{errors.agree}</p>}
-                <div className='checkbox-row'>
-                    <label htmlFor='agree'>
-                        I agree to the e-shop's terms and conditions.
-                    </label>
-                    <input 
-                        type='checkbox' 
-                        id='agree' 
-                        checked={agreed}
-                        onChange={(e) => setAgreed(e.target.checked)}
-                    />
-                </div>
-                <button 
-                    className='payment-button squircle-xl'
-                    onClick={handlePayment}
-                >
-                    Pay
-                </button>
-            </section>
+                        {errors.surname && <p className='field-error'>{errors.surname}</p>}
+                        <label htmlFor='surname'>Surname</label>
+                        <input type='text' id='surname' className='squircle-xl' onChange={handleChange} />
+
+                        {errors.email && <p className='field-error'>{errors.email}</p>}
+                        <label htmlFor='email'>E-mail</label>
+                        <input type='email' id='email' className='squircle-xl' onChange={handleChange} />
+
+                        <label htmlFor='phone'>Phone</label>
+                        <input type='tel' id='phone' className='squircle-xl' onChange={handleChange} />
+                    </div>
+                </section>
+
+                {/* Delivery address */}
+                <section className='pay-section' ref={deliveryRef}>
+                    <h3>Delivery</h3>
+                    <div>
+                        {errors.street && <p className='field-error'>{errors.street}</p>}
+                        <label htmlFor='street'>Street and number</label>
+                        <input type='text' id='street' className='squircle-xl' onChange={handleChange} />
+
+                        {errors.city && <p className='field-error'>{errors.city}</p>}
+                        <label htmlFor='city'>City</label>
+                        <input type='text' id='city' className='squircle-xl' onChange={handleChange} />
+
+                        {errors.zipcode && <p className='field-error'>{errors.zipcode}</p>}
+                        <label htmlFor='zipcode'>Zip-Code</label>
+                        <input type='text' id='zipcode' className='squircle-xl' onChange={handleChange} />
+                    </div>
+                </section>
+
+                {/* Payment and terms */}
+                <section className='pay-section' ref={paymentRef}>
+                    <h3>Payment</h3>
+                    {errors.agree && <p className='field-error'>{errors.agree}</p>}
+                    <div className='checkbox-row'>
+                        <label htmlFor='agree'>
+                            I agree to the e-shop's terms and conditions.
+                        </label>
+                        <input
+                            type='checkbox'
+                            id='agree'
+                            checked={agreed}
+                            onChange={(e) => setAgreed(e.target.checked)}
+                        />
+                    </div>
+                    <button
+                        className='payment-button squircle-xl'
+                        onClick={handlePayment}
+                    >
+                        Pay
+                    </button>
+                </section>
+
+            </div>
         </div>
-    </div>
-  )
-}
+    );
+};
 
-export default CheckoutModal
+export default CheckoutModal;

@@ -1,69 +1,68 @@
-import { useFrame } from '@react-three/fiber'
-import { useState, useRef, useEffect } from 'react'
-import { Canvas } from '@react-three/fiber'
-import type { GLTF } from 'three-stdlib'
-import { useGLTF, OrbitControls } from '@react-three/drei'
-import { Mesh, MeshStandardMaterial, Group, Object3D, PCFSoftShadowMap } from 'three'
-import modelPath from '../models/robotic_cat2-v3.glb'
-import './Model.css'
+import { useFrame, Canvas } from '@react-three/fiber';
+import { useState, useRef, useEffect } from 'react';
+import type { GLTF } from 'three-stdlib';
+import { useGLTF, OrbitControls } from '@react-three/drei';
+import { Mesh, MeshStandardMaterial, Group, Object3D, PCFSoftShadowMap } from 'three';
+import modelPath from '../models/robotic_cat2-v3.glb';
+import './Model.css';
 
 type GLTFResult = GLTF & {
-    scene: Group
-}
+    scene: Group;
+};
 
 const Scene = () => {
-    const ref = useRef<Group>(null!)
-    const gltf = useGLTF(modelPath) as GLTFResult
+    const ref = useRef<Group>(null!);
+    const gltf = useGLTF(modelPath) as GLTFResult;
 
     useEffect(() => {
         gltf.scene.traverse((child: Object3D) => {
             if (child instanceof Mesh) {
-                child.castShadow = true
-                child.receiveShadow = true
-                const mat = child.material as MeshStandardMaterial
+                child.castShadow = true;
+                child.receiveShadow = true;
+                const mat = child.material as MeshStandardMaterial;
                 if (mat.name === 'plastic') {
-                    mat.color.set('#c2d2d2')
-                    mat.roughness = 0.4
-                    mat.metalness = 0.1
+                    mat.color.set('#c2d2d2');
+                    mat.roughness = 0.4;
+                    mat.metalness = 0.1;
                 }
                 if (mat.name === 'plastic.001') {
-                    mat.color.set('#0B2918')
-                    mat.roughness = 0.8
+                    mat.color.set('#0B2918');
+                    mat.roughness = 0.8;
                 }
                 if (mat.name === 'Metal') {
-                    mat.color.set('#b0c0c0')
-                    mat.metalness = 0.5
-                    mat.roughness = 0.15
+                    mat.color.set('#b0c0c0');
+                    mat.metalness = 0.5;
+                    mat.roughness = 0.15;
                 }
                 if (mat.name === 'eyes') {
-                    mat.color.set('#222')
-                    mat.emissive.set('#331523')
-                    mat.emissiveIntensity = 0.4
+                    mat.color.set('#222');
+                    mat.emissive.set('#331523');
+                    mat.emissiveIntensity = 0.4;
                 }
             }
-        })
-    }, [gltf])
+        });
+    }, [gltf]);
 
     useFrame(() => {
-        ref.current.rotation.y += 0.005
-    })
+        ref.current.rotation.y += 0.005;
+    });
 
     return (
         <group ref={ref} scale={0.027} position={[0, -1, 0]}>
             <primitive object={gltf.scene} />
         </group>
-    )
-}
+    );
+};
 
 const Model = () => {
-    const [canvasActive, setCanvasActive] = useState(false)
+    const [canvasActive, setCanvasActive] = useState(false);
 
     return (
         <div
             className={`model-wrap ${canvasActive ? 'active' : ''}`}
             onClick={() => {
-                setCanvasActive(true)
-                setTimeout(() => setCanvasActive(false), 5000)
+                setCanvasActive(true);
+                setTimeout(() => setCanvasActive(false), 5000);
             }}
             onMouseLeave={() => setCanvasActive(false)}
         >
@@ -74,8 +73,8 @@ const Model = () => {
                 shadows
                 gl={{ powerPreference: 'low-power', antialias: false }}
                 onCreated={({ gl }) => {
-                    gl.shadowMap.enabled = true
-                    gl.shadowMap.type = PCFSoftShadowMap 
+                    gl.shadowMap.enabled = true;
+                    gl.shadowMap.type = PCFSoftShadowMap;
                 }}
                 camera={{ position: [0, 0, 11] }}
             >
@@ -99,7 +98,7 @@ const Model = () => {
                 <OrbitControls enableZoom={canvasActive} />
             </Canvas>
         </div>
-    )
-}
+    );
+};
 
-export default Model
+export default Model;

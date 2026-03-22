@@ -1,3 +1,7 @@
+/* =====================
+   SHOP HEADER
+===================== */
+
 .shop-header {
     width: 100%;
     max-width: 950px;
@@ -11,61 +15,69 @@
     background:
         linear-gradient(180deg, hsl(0 0% 100% / 0.05), hsl(0 0% 100% / 0.02)),
         linear-gradient(135deg, hsl(0 0% 100% / 0.03), transparent 55%);
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(var(--surface-blur));
     box-shadow: var(--shadow-soft);
-    z-index: 10;
+    z-index: var(--z-nav);
 }
 
 .shop-search-heading {
-  margin: 0;
-  font-size: var(--text-h3);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-color);
-  white-space: nowrap;
+    margin: 0;
+    font-size: var(--text-h3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-color);
+    white-space: nowrap;
 }
 
+/* =====================
+   SEARCH INPUT
+===================== */
+
 .shop-header input {
-  flex: 1;
-  min-width: 0;
-  appearance: none;
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-lg);
-  background: var(--background-elevated-tr);
-  color: var(--text-color);
-  padding: 0.85rem 1rem;
-  font: inherit;
-  transition:
-    border-color var(--transition-fast),
-    box-shadow var(--transition-fast),
-    background-color var(--transition-fast),
-    transform var(--transition-fast);
+    flex: 1;
+    min-width: 0;
+    appearance: none;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    background: var(--background-elevated-tr);
+    color: var(--text-color);
+    padding: 0.85rem 1rem;
+    font: inherit;
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background-color var(--transition-fast),
+        transform var(--transition-fast);
 }
 
 .shop-header input::placeholder {
-  color: var(--text-faint);
+    color: var(--text-faint);
 }
 
 .shop-header input:hover {
-  border-color: var(--border-accent);
-  background: var(--background-elevated);
+    border-color: var(--border-accent);
+    background: var(--background-elevated);
 }
 
 .shop-header input:focus-visible {
-  outline: none;
-  border-color: var(--main-color-light);
-  box-shadow:
-    0 0 0 3px var(--focus-ring),
-    0 0 18px var(--main-color-glow-light);
+    outline: none;
+    border-color: var(--main-color-light);
+    box-shadow:
+        0 0 0 3px var(--focus-ring),
+        0 0 18px var(--main-color-glow-light);
 }
 
-@media (max-width: 700px) {
-  .shop-header {
-    flex-direction: column;
-    align-items: stretch;
-  }
+/* =====================
+   RESPONSIVE
+===================== */
 
-  .shop-search-heading {
-    text-align: center;
-  }
+@media (max-width: 700px) {
+    .shop-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .shop-search-heading {
+        text-align: center;
+    }
 }

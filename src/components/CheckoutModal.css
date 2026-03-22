@@ -1,3 +1,7 @@
+/* =====================
+   BACKDROP
+===================== */
+
 .modal-backdrop {
     position: fixed;
     inset: 0;
@@ -8,6 +12,10 @@
     padding: var(--spacing-lg);
     background: rgb(0 0 0 / 0.55);
 }
+
+/* =====================
+   MODAL
+===================== */
 
 .checkout-modal {
     position: relative;
@@ -30,6 +38,7 @@
     animation: modal-out var(--transition-slow) forwards;
 }
 
+/* Reset section styles inside modal */
 .checkout-modal section {
     min-height: unset;
     max-width: unset;
@@ -38,6 +47,9 @@
     display: block;
 }
 
+/* =====================
+   CLOSE BUTTON
+===================== */
 
 .modal-close {
     position: absolute;
@@ -71,11 +83,16 @@
     outline: none;
 }
 
+/* =====================
+   ORDER SUMMARY
+===================== */
+
 .checkout-modal .pay-section + .pay-section {
     margin-top: var(--spacing-lg);
     padding-top: var(--spacing-md);
     border-top: 1px solid var(--border-light);
 }
+
 .checkout-modal h3 {
     margin-bottom: var(--spacing-sm);
     text-transform: uppercase;
@@ -116,6 +133,10 @@
     color: var(--text-color);
 }
 
+/* =====================
+   FORM FIELDS
+===================== */
+
 .pay-section > div {
     display: grid;
     gap: var(--spacing-xs);
@@ -139,12 +160,6 @@
         background-color var(--transition-normal),
         border-color var(--transition-fast),
         box-shadow var(--transition-fast);
-}
-
-.pay-section input:not([type='checkbox']):focus-visible {
-    outline: none;
-    border-color: var(--border-accent);
-    box-shadow: 0 0 0 2px var(--focus-ring);
 }
 
 .pay-section input:not([type='checkbox']):focus-visible {
@@ -187,51 +202,71 @@
     color: var(--error-color);
 }
 
+/* =====================
+   PAYMENT BUTTON
+===================== */
 
 .payment-button {
-  width: 100%;
-  border: 1px solid var(--border-accent);
-  border-radius: 999px;
-  margin-top: var(--spacing-md);
-  padding: 0.9rem 1rem;
-  background:
-    linear-gradient(180deg, oklch(from var(--main-color) calc(l - .02) c h / 0.95), oklch(from var(--main-color) calc(l - .12) c h / 0.95));
-  color: white;
-  font: inherit;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  transition:
-    transform var(--transition-fast),
-    filter var(--transition-fast),
-    opacity var(--transition-fast),
-    box-shadow var(--transition-fast);
-  box-shadow:
-    0 8px 24px oklch(from var(--main-color) l c h / 0.22),
-    inset 0 1px 0 hsl(0 0% 100% / 0.22);
+    width: 100%;
+    border: 1px solid var(--border-accent);
+    border-radius: 999px;
+    margin-top: var(--spacing-md);
+    padding: 0.9rem 1rem;
+    background:
+        linear-gradient(
+            180deg,
+            oklch(from var(--main-color) calc(l - 0.02) c h / 0.95),
+            oklch(from var(--main-color) calc(l - 0.12) c h / 0.95)
+        );
+    color: white;
+    font: inherit;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition:
+        transform var(--transition-fast),
+        filter var(--transition-fast),
+        opacity var(--transition-fast),
+        box-shadow var(--transition-fast);
+    box-shadow:
+        0 8px 24px oklch(from var(--main-color) l c h / 0.22),
+        inset 0 1px 0 hsl(0 0% 100% / 0.22);
 }
 
 .payment-button:hover:not(:disabled) {
-  transform: translateY(-1px);
-  filter: brightness(1.05);
+    transform: translateY(-1px);
+    filter: brightness(1.05);
 }
 
 .payment-button:focus-visible {
-  outline: none;
-  box-shadow:
-    0 0 0 3px var(--focus-ring),
-    0 8px 24px oklch(from var(--main-color) l c h / 0.22);
+    outline: none;
+    box-shadow:
+        0 0 0 3px var(--focus-ring),
+        0 8px 24px oklch(from var(--main-color) l c h / 0.22);
 }
 
 .payment-button:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-  filter: grayscale(0.15);
-  box-shadow: none;
+    opacity: 0.45;
+    cursor: not-allowed;
+    filter: grayscale(0.15);
+    box-shadow: none;
 }
 
+/* =====================
+   KEYFRAMES
+===================== */
 
-/* KEYFRAMES */
+@keyframes modal-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
 @keyframes modal-out {
     from {
         opacity: 1;
@@ -243,7 +278,10 @@
     }
 }
 
-/* REDUCED MOTION */
+/* =====================
+   REDUCED MOTION
+===================== */
+
 @media (prefers-reduced-motion: reduce) {
     .checkout-modal,
     .checkout-modal.is-closing {
@@ -251,7 +289,10 @@
     }
 }
 
-/* MEDIA QUERIES */
+/* =====================
+   RESPONSIVE
+===================== */
+
 @media (max-width: 720px) {
     .modal-backdrop {
         padding: var(--spacing-md);
@@ -265,5 +306,3 @@
         grid-template-columns: 48px minmax(0, 1fr);
     }
 }
-
-

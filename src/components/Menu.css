@@ -1,3 +1,7 @@
+/* =====================
+   NAVIGATION
+===================== */
+
 .navigation {
     position: fixed;
     top: 0;
@@ -5,7 +9,7 @@
     anchor-name: --active-nav;
     width: 100%;
     margin-inline: auto;
-    z-index: 1;
+    z-index: var(--z-nav);
 }
 
 .nav-menu {
@@ -21,12 +25,17 @@
     padding: 2rem;
 }
 
+/* =====================
+   ACTIVE LINK INDICATOR
+===================== */
+
+/* Sliding highlight that follows the hovered nav item */
 .navigation::after {
     content: '';
     border-block-start: 3px solid transparent;
     border-block-end: 3px solid transparent;
 
-    background: 
+    background:
         radial-gradient(var(--background-color)) padding-box,
         radial-gradient(var(--main-color), transparent) border-box;
 
@@ -46,35 +55,44 @@
     transition-delay: 700ms, 0ms;
 }
 
+/* =====================
+   NAV LINKS
+===================== */
+
 .nav-link a {
     text-decoration: none;
     color: var(--text-color);
     font-size: var(--text-sm);
     padding: 0.75rem 1.25rem;
     text-transform: uppercase;
-    border: 2px solid hsl(0 0 100% / 0.25);
-       background: var(--button);
+    border: 2px solid hsl(0 0% 100% / 0.25);
+    background: var(--button);
     transition: background-color var(--transition-slow);
     cursor: pointer;
 }
 
 .nav-link a:is(:hover, :focus) {
-    anchor-name: --active-nav; 
+    anchor-name: --active-nav;
     background: var(--main-color);
-    box-shadow: 0 0 32px oklch(from var(--main-color) l c h / .5);
+    box-shadow: 0 0 32px oklch(from var(--main-color) l c h / 0.5);
 }
 
+/* Show the indicator when any link is hovered or focused */
 .navigation:has(a:hover, a:focus)::after {
     opacity: 1;
     transition-delay: 0ms, 0ms;
 }
 
+/* =====================
+   BURGER BUTTON
+===================== */
+
 .burger {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--text-color);
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-color);
 }
 
 .menu-img {
@@ -87,32 +105,37 @@
 }
 
 .menu-img:hover {
-    filter: 
+    filter:
         drop-shadow(0 0 8px var(--main-color))
-        drop-shadow(0 0 20px oklch(from var(--main-color) l c h / .4));
+        drop-shadow(0 0 20px oklch(from var(--main-color) l c h / 0.4));
 }
+
+/* =====================
+   RESPONSIVE
+===================== */
 
 @media (max-width: 648px) {
     .navigation {
-        border-bottom: 1px solid hsl(0 0 100% / 0.25);
-        background: hsl(0 0 20%);
+        border-bottom: 1px solid hsl(0 0% 100% / 0.25);
+        background: hsl(0 0% 20%);
     }
 
-    .nav-menu { 
+    /* Hidden by default, shown via nav-menu--open */
+    .nav-menu {
         display: none;
         min-width: 60%;
         flex-direction: column;
         align-items: flex-start;
-        border: 1px solid hsl(0 0 100% / 0.25);
+        border: 1px solid hsl(0 0% 100% / 0.25);
         border-top: none;
         z-index: 1;
     }
-    .nav-menu--open { 
-        display: flex; 
+
+    .nav-menu--open {
+        display: flex;
         position: absolute;
-        /* border-top: 0; */
-        background: hsla(0, 0%, 10%, 0.6);
-        backdrop-filter: blur(10px);
+        background: hsl(0 0% 10% / 0.6);
+        backdrop-filter: blur(var(--surface-blur));
         z-index: 0;
     }
 
@@ -134,7 +157,6 @@
         color: var(--main-color);
         font-weight: 700;
     }
-
 
     .burger { display: block; }
 }

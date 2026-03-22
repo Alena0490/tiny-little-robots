@@ -1,25 +1,26 @@
-import { lazy } from 'react'
-// MODELS
-const CatModel  = lazy(() => import('../components/models/CatModel'))
-const RoundCat  = lazy(() => import('../components/models/RoundCat'))
-const DinoModel = lazy(() => import('../components/models/DinoModel'))
-const DogModel  = lazy(() => import('../components/models/DogModel'))
-const ShibaModel  = lazy(() => import('../components/models/ShibaModel'))
-const RamboModel  = lazy(() => import('../components/models/RamboModel'))
-const NemoModel   = lazy(() => import('../components/models/NemoModel'))
-const PinguiModel = lazy(() => import('../components/models/PinguiModel'))
-const SpiderModel = lazy(() => import('../components/models/SpiderModel'))
+import { lazy } from 'react';
 
-//IMAGES
-import kitty from '../img/kitty.png'
-import kittMini from '../img/kittyMini.png'
-import dino from '../img/dino.png'
-import dog from '../img/dog.png'
-import shiba from '../img/shiba.png'
-import rambo from '../img/rambo.png'
-import nemo from '../img/nemo.png'
-import pingui from '../img/pingui.png'
-import spider from '../img/spider.png'
+// MODELS
+const CatModel    = lazy(() => import('../components/models/CatModel'));
+const RoundCat    = lazy(() => import('../components/models/RoundCat'));
+const DinoModel   = lazy(() => import('../components/models/DinoModel'));
+const DogModel    = lazy(() => import('../components/models/DogModel'));
+const ShibaModel  = lazy(() => import('../components/models/ShibaModel'));
+const RamboModel  = lazy(() => import('../components/models/RamboModel'));
+const NemoModel   = lazy(() => import('../components/models/NemoModel'));
+const PinguiModel = lazy(() => import('../components/models/PinguiModel'));
+const SpiderModel = lazy(() => import('../components/models/SpiderModel'));
+
+// IMAGES
+import kitty    from '../img/kitty.png';
+import kittMini from '../img/kittyMini.png';
+import dino     from '../img/dino.png';
+import dog      from '../img/dog.png';
+import shiba    from '../img/shiba.png';
+import rambo    from '../img/rambo.png';
+import nemo     from '../img/nemo.png';
+import pingui   from '../img/pingui.png';
+import spider   from '../img/spider.png';
 
 const shopItems = [
     {
@@ -41,7 +42,7 @@ const shopItems = [
         img: kittMini,
         alt: 'Round grey robotic cat with digital eye display',
         price: 2500,
-          imgUrl: 'https://raw.githubusercontent.com/Alena0490/Glow-menu-parallax/main/src/img/kittyMini.png',
+        imgUrl: 'https://raw.githubusercontent.com/Alena0490/Glow-menu-parallax/main/src/img/kittyMini.png',
         url: 'https://sketchfab.com/3d-models/robo-round-cat-astronaut-ccbb30aab1e64cd0bd8ccdf2ffe5cdca'
     },
     {
@@ -77,7 +78,7 @@ const shopItems = [
         imgUrl: 'https://raw.githubusercontent.com/Alena0490/Glow-menu-parallax/main/src/img/shiba.png',
         url: 'https://sketchfab.com/3d-models/robo-shiba-b4215f3c452c4e7cbe845b56251d2877'
     },
-     {
+    {
         id: 6,
         name: 'Rambo XXL',
         description: 'Heavy-duty security unit',
@@ -99,28 +100,28 @@ const shopItems = [
         imgUrl: 'https://raw.githubusercontent.com/Alena0490/Glow-menu-parallax/main/src/img/nemo.png',
         url: 'https://sketchfab.com/3d-models/robotic-fish-b4362fb28c7a4b0e83638bb6388c23a8'
     },
-          {
-            id: 8,
-            name: 'Pingu Drill',
-            description: 'Arctic ops specialist',
-            model: PinguiModel,
-            img: pingui,
-            alt: 'Black robotic penguin with antenna and drill nose',
-            price: 900,
-            imgUrl: 'https://raw.githubusercontent.com/Alena0490/Glow-menu-parallax/main/src/img/pingui.png',
-            url: 'https://sketchfab.com/3d-models/weathered-penguin-bot-33afc2b450dd4c188b307c82f3b2cbc3#download'
-        },
-        {
-            id: 9,
-            name: 'Web Crawler 3.0',
-            description: 'Multi-limb tactical unit',
-            model: SpiderModel,
-            img: spider,
-            alt: 'Pink robotic spider with metal claws',
-            price: 1200,
-            imgUrl: 'https://raw.githubusercontent.com/Alena0490/Glow-menu-parallax/main/src/img/spider.png',
-            url: 'https://sketchfab.com/3d-models/robotic-spider-ee587d7dabed49e1906ac5035b502899'
-        }
-]
+    {
+        id: 8,
+        name: 'Pingu Drill',
+        description: 'Arctic ops specialist',
+        model: PinguiModel,
+        img: pingui,
+        alt: 'Black robotic penguin with antenna and drill nose',
+        price: 900,
+        imgUrl: 'https://raw.githubusercontent.com/Alena0490/Glow-menu-parallax/main/src/img/pingui.png',
+        url: 'https://sketchfab.com/3d-models/weathered-penguin-bot-33afc2b450dd4c188b307c82f3b2cbc3#download'
+    },
+    {
+        id: 9,
+        name: 'Web Crawler 3.0',
+        description: 'Multi-limb tactical unit',
+        model: SpiderModel,
+        img: spider,
+        alt: 'Pink robotic spider with metal claws',
+        price: 1200,
+        imgUrl: 'https://raw.githubusercontent.com/Alena0490/Glow-menu-parallax/main/src/img/spider.png',
+        url: 'https://sketchfab.com/3d-models/robotic-spider-ee587d7dabed49e1906ac5035b502899'
+    }
+];
 
-export default shopItems
+export default shopItems;

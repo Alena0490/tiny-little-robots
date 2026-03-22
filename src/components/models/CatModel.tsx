@@ -1,28 +1,27 @@
-import { useFrame, useThree } from '@react-three/fiber'
-import { useState, useRef, useEffect } from 'react'
-import { Canvas } from '@react-three/fiber'
-import type { GLTF } from 'three-stdlib'
-import { useGLTF, OrbitControls } from '@react-three/drei'
-import { Mesh, MeshStandardMaterial, DirectionalLight, Group, Object3D, PCFShadowMap } from 'three'
-import modelPath from '../../models/robotic_cat-v1.glb'
-import '../Model.css'
-import '../ShopItem.css'
+import { useFrame, useThree, Canvas } from '@react-three/fiber';
+import { useState, useRef, useEffect } from 'react';
+import type { GLTF } from 'three-stdlib';
+import { useGLTF, OrbitControls } from '@react-three/drei';
+import { Mesh, MeshStandardMaterial, DirectionalLight, Group, Object3D, PCFShadowMap } from 'three';
+import modelPath from '../../models/robotic_cat-v1.glb';
+import '../Model.css';
+import '../ShopItem.css';
 
 type GLTFResult = GLTF & {
-    scene: Group
-}
+    scene: Group;
+};
 
 type CatModelProps = {
-    className?: string
-}
+    className?: string;
+};
 
 const FixedLights = () => {
-    const { camera } = useThree()
-    const lightRef = useRef<DirectionalLight>(null!)
+    const { camera } = useThree();
+    const lightRef = useRef<DirectionalLight>(null!);
 
     useFrame(() => {
-        lightRef.current.position.copy(camera.position)
-    })
+        lightRef.current.position.copy(camera.position);
+    });
 
     return (
         <>
@@ -39,74 +38,74 @@ const FixedLights = () => {
             />
             <directionalLight position={[-5, 2, -5]} intensity={0.25} color='#ff69b4' />
         </>
-    )
-}
+    );
+};
 
 const Scene = () => {
-    const ref = useRef<Group>(null!)
-    const gltf = useGLTF(modelPath) as GLTFResult
+    const ref = useRef<Group>(null!);
+    const gltf = useGLTF(modelPath) as GLTFResult;
 
     useEffect(() => {
         gltf.scene.traverse((child: Object3D) => {
             if (child instanceof Mesh) {
-                child.castShadow = true
-                child.receiveShadow = true
-                const mat = child.material as MeshStandardMaterial
+                child.castShadow = true;
+                child.receiveShadow = true;
+                const mat = child.material as MeshStandardMaterial;
                 if (mat.name === 'plastic') {
-                    mat.color.set('#ff69b4')
-                    mat.roughness = 1
-                    mat.metalness = 0
+                    mat.color.set('#ff69b4');
+                    mat.roughness = 1;
+                    mat.metalness = 0;
                 }
                 if (mat.name === 'plastic.001') {
-                    mat.color.set('#0B2918')
-                    mat.roughness = 0.9
-                    mat.metalness = 0.1
+                    mat.color.set('#0B2918');
+                    mat.roughness = 0.9;
+                    mat.metalness = 0.1;
                 }
                 if (mat.name === 'Metal') {
-                    mat.color.set('#b0c0c0')
-                    mat.metalness = 0.9
-                    mat.roughness = 0.15
+                    mat.color.set('#b0c0c0');
+                    mat.metalness = 0.9;
+                    mat.roughness = 0.15;
                 }
                 if (mat.name === 'eyes') {
-                    mat.color.set('#222')
-                    mat.emissive.set('#331523')
-                    mat.emissiveIntensity = 0.4
+                    mat.color.set('#222');
+                    mat.emissive.set('#331523');
+                    mat.emissiveIntensity = 0.4;
                 }
             }
-        })
-    }, [gltf])
+        });
+    }, [gltf]);
 
     useFrame(() => {
-        ref.current.rotation.y += 0.005
-    })
+        ref.current.rotation.y += 0.005;
+    });
 
     return (
         <group ref={ref} scale={0.022} position={[0, -1, 0]}>
             <primitive object={gltf.scene} />
         </group>
-    )
-}
+    );
+};
 
 const CatModel = ({ className }: CatModelProps) => {
-    const [canvasActive, setCanvasActive] = useState(false)
-    const [visible, setVisible] = useState(false)
-    const wrapRef = useRef<HTMLDivElement>(null)
+    const [canvasActive, setCanvasActive] = useState(false);
+    const [visible, setVisible] = useState(false);
+    const wrapRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver(([entry]) => {
-            if (entry.isIntersecting) setVisible(true)
-        }, { threshold: 0.1 })
-        if (wrapRef.current) observer.observe(wrapRef.current)
-        return () => observer.disconnect()
-    }, [])
+            if (entry.isIntersecting) setVisible(true);
+        }, { threshold: 0.1 });
+        if (wrapRef.current) observer.observe(wrapRef.current);
+        return () => observer.disconnect();
+    }, []);
 
     return (
         <div
             ref={wrapRef}
             className={`model-wrap ${canvasActive ? 'active' : ''}`}
             onClick={() => {
-                setCanvasActive(true)
-                setTimeout(() => setCanvasActive(false), 5000)
+                setCanvasActive(true);
+                setTimeout(() => setCanvasActive(false), 5000);
             }}
             onMouseLeave={() => setCanvasActive(false)}
         >
@@ -118,8 +117,8 @@ const CatModel = ({ className }: CatModelProps) => {
                     id='shop-model'
                     shadows
                     onCreated={({ gl }) => {
-                        gl.shadowMap.enabled = true
-                        gl.shadowMap.type = PCFShadowMap
+                        gl.shadowMap.enabled = true;
+                        gl.shadowMap.type = PCFShadowMap;
                     }}
                     camera={{ position: [0, 0, 11] }}
                 >
@@ -133,7 +132,7 @@ const CatModel = ({ className }: CatModelProps) => {
                 </Canvas>
             )}
         </div>
-    )
-}
+    );
+};
 
-export default CatModel
+export default CatModel;
